@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'summer';
+  src: url('./fonts/HSYeoleum2.0.ttf');
+}
