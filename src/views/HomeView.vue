@@ -1,7 +1,7 @@
 <template>
   <div class="bg-main-img bg-cover my-0 mx-auto">
     <div class="absolute w-full h-full bg-opacityGray"></div>
-    <header class="absolute w-screen">
+    <header class="absolute w-screen z-10">
       <NavBar />
     </header>
     <swiper-container
@@ -15,7 +15,7 @@
       class="w-full h-screen"
       init="false"
     >
-      <swiper-slide class="mt-10"><MainPage /></swiper-slide>
+      <swiper-slide><MainPage /></swiper-slide>
       <swiper-slide><MainPage /></swiper-slide>
       <swiper-slide><MainPage /></swiper-slide>
     </swiper-container>

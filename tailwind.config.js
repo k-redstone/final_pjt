@@ -9,6 +9,7 @@ export default {
       },
       backgroundColor: {
         opacityGray: 'rgba(45,45,45,0.55)',
+        lightPurple: '#A060F2',
       },
       colors: {
         mint: '#60F2BE',
