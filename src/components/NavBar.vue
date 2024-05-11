@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[1280px] my-0 mx-auto mt-16">
+  <div class="mt-14">
     <nav class="flex font-bold">
       <!-- link -->
       <div class="grow">
