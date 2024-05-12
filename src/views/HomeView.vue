@@ -18,7 +18,7 @@
       </swiper-slide>
       <swiper-slide>
         <HomeLayout>
-          <MainPage />
+          <SelectMoodPage />
         </HomeLayout>
       </swiper-slide>
       <swiper-slide>
@@ -35,6 +35,7 @@ import { register } from 'swiper/element/bundle'
 import { onMounted } from 'vue'
 import { Mousewheel, Pagination } from 'swiper/modules'
 import MainPage from '@/components/MainPage.vue'
+import SelectMoodPage from '@/components/SelectMoodPage.vue'
 import HomeLayout from '@/components/HomeLayout.vue'
 
 register()
