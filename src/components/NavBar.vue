@@ -16,9 +16,11 @@
             <p class="text-white text-xl">Log In</p>
           </button>
         </RouterLink>
-        <button class="w-[137px] h-[43px] bg-white rounded-xl text-center ml-10 cursor-pointer">
-          <p class="text-black text-xl">Sign Up</p>
-        </button>
+        <RouterLink :to="{ name: 'signUp' }">
+          <button class="w-[137px] h-[43px] bg-white rounded-xl text-center ml-10 cursor-pointer">
+            <p class="text-black text-xl">Sign Up</p>
+          </button>
+        </RouterLink>
       </div>
     </nav>
   </div>
