@@ -6,3 +6,7 @@
   font-family: 'summer';
   src: url('./fonts/HSYeoleum2.0.ttf');
 }
+@font-face {
+  font-family: 'kbiz';
+  src: url('./fonts/KBIZ.ttf');
+}

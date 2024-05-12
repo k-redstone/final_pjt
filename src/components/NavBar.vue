@@ -11,9 +11,11 @@
       </div>
       <!-- login -->
       <div>
-        <button class="w-[137px] h-[43px] bg-lightPurple rounded-xl cursor-pointer">
-          <p class="text-white text-xl">Log In</p>
-        </button>
+        <RouterLink :to="{ name: 'login' }">
+          <button class="w-[137px] h-[43px] bg-lightPurple rounded-xl cursor-pointer">
+            <p class="text-white text-xl">Log In</p>
+          </button>
+        </RouterLink>
         <button class="w-[137px] h-[43px] bg-white rounded-xl text-center ml-10 cursor-pointer">
           <p class="text-black text-xl">Sign Up</p>
         </button>
@@ -22,6 +24,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 
 <style lang="scss" scoped></style>
