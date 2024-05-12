@@ -7,6 +7,10 @@ export const useAuthStore = defineStore('auth', () => {
     console.log(formValue)
     // axios.post()
   }
+  const userRegister = (formValue) => {
+    console.log(formValue)
+    // axios.post()
+  }
 
-  return { userLogin }
+  return { userLogin, userRegister }
 })
