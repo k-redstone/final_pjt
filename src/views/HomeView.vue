@@ -1,6 +1,12 @@
 <template>
   <div>
+    <div class="w-full h-screen" v-show="!isLogin">
+      <HomeLayout>
+        <LandingPage />
+      </HomeLayout>
+    </div>
     <swiper-container
+      v-show="isLogin"
       :direction="'vertical'"
       :slidesPerView="1"
       :mousewheel="true"
@@ -33,13 +39,17 @@
 
 <script setup>
 import { register } from 'swiper/element/bundle'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Mousewheel, Pagination } from 'swiper/modules'
 import MainPage from '@/components/MainPage.vue'
 import SelectMoodPage from '@/components/SelectMoodPage.vue'
 import HomeLayout from '@/components/HomeLayout.vue'
+import LandingPage from '@/components/LandingPage.vue'
 
 register()
+
+const isLogin = ref(true)
+
 onMounted(() => {
   const swiperEl = document.querySelector('swiper-container')
   console.log(swiperEl)
