@@ -7,30 +7,34 @@
     </div>
     <swiper-container
       v-show="isLogin"
+      :hashNavigation="{
+        watchState: true,
+      }"
       :direction="'vertical'"
       :slidesPerView="1"
       :mousewheel="true"
       :pagination="{
         clickable: true,
       }"
-      :modules="[Mousewheel, Pagination]"
+      :modules="[Mousewheel, Pagination, Navigation]"
       class="w-full h-screen"
       init="false"
     >
-      <swiper-slide>
+      <swiper-slide data-hash="mainPage">
         <HomeLayout>
           <MainPage />
         </HomeLayout>
       </swiper-slide>
-      <swiper-slide>
+      <swiper-slide data-hash="selectMoodPage">
         <div class="absolute w-screen h-screen bg-opacityGray"></div>
         <HomeLayout>
           <SelectMoodPage />
         </HomeLayout>
       </swiper-slide>
-      <swiper-slide>
+      <swiper-slide data-hash="selectMoviePage">
+        <div class="absolute w-screen h-screen bg-opacityGray"></div>
         <HomeLayout>
-          <MainPage />
+          <SelectMoviePage />
         </HomeLayout>
       </swiper-slide>
     </swiper-container>
@@ -40,9 +44,10 @@
 <script setup>
 import { register } from 'swiper/element/bundle'
 import { ref, onMounted } from 'vue'
-import { Mousewheel, Pagination } from 'swiper/modules'
+import { Mousewheel, Pagination, Navigation } from 'swiper/modules'
 import MainPage from '@/components/MainPage.vue'
 import SelectMoodPage from '@/components/SelectMoodPage.vue'
+import SelectMoviePage from '@/components/SelectMoviePage.vue'
 import HomeLayout from '@/components/HomeLayout.vue'
 import LandingPage from '@/components/LandingPage.vue'
 
