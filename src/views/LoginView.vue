@@ -1,42 +1,42 @@
 <template>
   <div class="pt-[100px]">
     <HomeLayout>
-      <div class="flex justify-center translate-y-1/4 qhd:translate-y-1/2">
-        <div class="bg-gray w-[646px] h-[425px] rounded-lg">
+      <div class="flex justify-center mt-24">
+        <div class="bg-gray w-[525px] px-4 py-2 rounded-lg">
           <div class="flex flex-col items-center">
             <!-- title -->
             <div class="my-10">
               <p class="font-summer text-5xl text-mint">Login</p>
             </div>
-            <form class="w-[411px]" @submit.prevent="fetchLogin">
+            <form class="font-kbizB" @submit.prevent="fetchLogin">
               <!-- username form -->
-              <div class="my-10 flex justify-between">
-                <label class="text-mint font-kbiz text-2xl" for="userId">아이디</label>
+              <div class="mb-4 flex flex-col justify-between">
+                <label class="text-mint text-2xl py-2" for="userId">아이디</label>
                 <input
                   id="userId"
-                  class="w-[281px] h-[34px] pl-2 rounded-sm"
+                  class="w-[395px] h-[48px] pl-2 rounded-sm"
                   placeholder="아이디를 입력해주세요"
                   v-model="userId"
                 />
               </div>
               <!-- password form -->
-              <div class="my-5 flex justify-between">
-                <label class="text-mint font-kbiz text-2xl" for="password">비밀번호</label>
+              <div class="flex flex-col justify-between">
+                <label class="text-mint text-2xl py-2" for="password">비밀번호</label>
                 <input
                   id="password"
-                  class="w-[281px] h-[34px] pl-2 rounded-sm"
+                  class="w-[395px] h-[48px] pl-2 rounded-sm"
                   type="password"
                   autoComplete="off"
                   placeholder="비밀번호를 입력해주세요"
                   v-model="password"
                 />
               </div>
-              <div class="flex justify-center text-red-300 font-medium text-lg">
+              <div class="flex justify-center text-red-300 font-medium text-lg mt-6 w-[395px]">
                 <p>{{ errorMsg }}</p>
               </div>
               <!-- login btn -->
-              <div class="flex justify-center mt-4">
-                <GlobalButton :type="'mint'" :text="'Log In'" />
+              <div class="flex justify-center py-5">
+                <GlobalButton class="w-[395px] h-[48px]" :type="'mint'" :text="'Log In'" />
               </div>
             </form>
           </div>
