@@ -24,6 +24,7 @@ export default {
         kbiz: ['kbiz', 'sans-serif'],
         kbizH: ['kbizH', 'sans-serif'],
         kbizB: ['kbizB', 'sans-serif'],
+        kbizR: ['kbizR', 'sans-serif'],
       },
     },
   },

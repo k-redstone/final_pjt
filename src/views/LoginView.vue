@@ -8,7 +8,7 @@
             <div class="my-10">
               <p class="font-summer text-5xl text-mint">Login</p>
             </div>
-            <form class="font-kbizB" @submit.prevent="fetchLogin">
+            <form class="font-kbizR" @submit.prevent="fetchLogin">
               <!-- username form -->
               <div class="mb-4 flex flex-col justify-between">
                 <label class="text-mint text-2xl py-2" for="userId">아이디</label>
@@ -36,7 +36,11 @@
               </div>
               <!-- login btn -->
               <div class="flex justify-center py-5">
-                <GlobalButton class="w-[395px] h-[48px]" :type="'mint'" :text="'Log In'" />
+                <GlobalButton
+                  class="w-[395px] h-[48px] font-kbizB"
+                  :type="'mint'"
+                  :text="'Log In'"
+                />
               </div>
             </form>
           </div>

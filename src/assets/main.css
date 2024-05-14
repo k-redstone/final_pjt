@@ -18,3 +18,7 @@
   font-family: 'kbizB';
   src: url('./fonts/KBIZ_B.ttf');
 }
+@font-face {
+  font-family: 'kbizR';
+  src: url('./fonts/KBIZ_R.ttf');
+}
