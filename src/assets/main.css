@@ -10,3 +10,11 @@
   font-family: 'kbiz';
   src: url('./fonts/KBIZ.ttf');
 }
+@font-face {
+  font-family: 'kbizH';
+  src: url('./fonts/KBIZ_H.ttf');
+}
+@font-face {
+  font-family: 'kbizB';
+  src: url('./fonts/KBIZ_B.ttf');
+}
