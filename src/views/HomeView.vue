@@ -17,6 +17,7 @@
         </HomeLayout>
       </swiper-slide>
       <swiper-slide>
+        <div class="absolute w-screen h-screen bg-opacityGray"></div>
         <HomeLayout>
           <SelectMoodPage />
         </HomeLayout>

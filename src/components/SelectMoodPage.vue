@@ -4,7 +4,7 @@
       <main class="w-full flex flex-col">
         <!-- msg -->
         <div>
-          <p class="text-mint text-5xl font-summer">오늘 당신의 기분은 어떠신가요?</p>
+          <p class="text-white text-5xl font-summer">Q. 오늘 당신의 기분은 어떠신가요?</p>
         </div>
         <!-- selectBox -->
         <div class="flex justify-around mt-20">
