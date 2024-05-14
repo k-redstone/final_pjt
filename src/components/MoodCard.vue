@@ -1,9 +1,9 @@
 <template>
   <div
-    class="w-[246px] h-[142px] bg-gray rounded-md flex justify-center items-center cursor-pointer"
-    :class="{ 'border-4 border-purple-400': selectMood === text }"
+    class="w-[226px] h-[125px] bg-none rounded-md flex justify-center items-center cursor-pointer"
+    :class="selectMood === text ? 'border-4 border-mint' : 'border-white border-2 '"
   >
-    <p class="text-3xl text-white font-kbiz">{{ text }}</p>
+    <p class="text-3xl text-white">{{ text }}</p>
   </div>
 </template>
 

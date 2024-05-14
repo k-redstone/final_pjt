@@ -13,22 +13,12 @@
           <li class="mx-6">Movie</li>
         </ul>
       </div>
-      <!-- login -->
-      <div>
-        <RouterLink :to="{ name: 'login' }">
-          <GlobalButton :type="'purple'" :text="'Log In'" />
-        </RouterLink>
-        <RouterLink :to="{ name: 'signUp' }">
-          <GlobalButton class="ml-10" :type="'white'" :text="'Sign Up'" />
-        </RouterLink>
-      </div>
     </nav>
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import GlobalButton from './GlobalButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
