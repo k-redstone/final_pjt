@@ -1,9 +1,7 @@
 <template>
   <div>
     <HomeLayout>
-      <header>
-        <NavBar />
-      </header>
+      <NavBar />
       <div class="flex justify-center mt-12 pt-[100px]">
         <div class="bg-gray w-[525px] px-4 py-2 rounded-lg">
           <div class="flex flex-col items-center">

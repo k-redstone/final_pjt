@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <!-- 네비게이션바 -->
     <HomeLayout>
-      <header class="fixed z-50">
+      <header class="fixed z-50 w-[1280px]">
         <NavBar />
       </header>
     </HomeLayout>

@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col">
     <HomeLayout>
-      <header>
-        <NavBar />
-      </header>
+      <NavBar />
       <main class="w-full flex flex-col font-kbizB">
         <div>
           <!-- title -->
@@ -11,7 +9,7 @@
             <h1 class="text-white text-5xl">오늘 당신을 위한 영화입니다</h1>
           </div>
         </div>
-        <div class="grid grid-cols-4 gap-5">
+        <div class="grid grid-cols-4 gap-8 mb-20">
           <LikeMovieCard
             v-for="movieData in store.similarMovieList"
             :movieData="movieData"
