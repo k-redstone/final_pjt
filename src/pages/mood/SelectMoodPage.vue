@@ -27,8 +27,8 @@
 
 <script setup>
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
-import GlobalButton from './GlobalButton.vue'
-import MoodCard from './MoodCard.vue'
+import GlobalButton from '@/components/GlobalButton.vue'
+import MoodCard from '@/components/MoodCard.vue'
 import { ref } from 'vue'
 const store = useMovieRecommendStore()
 const selectedMood = ref('')

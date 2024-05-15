@@ -49,9 +49,9 @@
 <script setup>
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
 import { useRouter } from 'vue-router'
-import MovieCard from './MovieCard.vue'
+import MovieCard from '@/components/MovieCard.vue'
 import { Grid, Pagination } from 'swiper/modules'
-import GlobalButton from './GlobalButton.vue'
+import GlobalButton from '@/components/GlobalButton.vue'
 import { ref, watch } from 'vue'
 
 const store = useMovieRecommendStore()

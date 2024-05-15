@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import GlobalButton from './GlobalButton.vue'
+import GlobalButton from '@/components/GlobalButton.vue'
 import { RouterLink } from 'vue-router'
 </script>
 
