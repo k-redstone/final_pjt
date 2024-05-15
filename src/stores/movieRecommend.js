@@ -52,7 +52,7 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
       axios
         .get(URL, { params: params })
         .then((res) => {
-          const randomMovieList = _.sampleSize(res.data.results, 4)
+          const randomMovieList = _.sampleSize(res.data.results, 10)
           similarMovieList.value.push(...randomMovieList)
         })
         .catch((error) => {
@@ -66,6 +66,7 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
   }
   return {
     isMoodSelected,
+    similarMovieList,
     moodMovieSelectCount,
     moodMovieSelectList,
     moodMovieList,

@@ -19,7 +19,7 @@
                 :text="'초기화'"
                 @click="store.clearMoodMovieSelctList"
               />
-              <GlobalButton :type="'mint'" :text="'추천 받기'" @click="store.getSimilarMovies" />
+              <GlobalButton :type="'mint'" :text="'추천 받기'" @click="handleRecommendBtn" />
             </div>
           </div>
           <div class="h-[600px] mt-10">
@@ -48,11 +48,18 @@
 
 <script setup>
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
+import { useRouter } from 'vue-router'
 import MovieCard from './MovieCard.vue'
 import { Grid, Pagination } from 'swiper/modules'
 import GlobalButton from './GlobalButton.vue'
 
 const store = useMovieRecommendStore()
+const router = useRouter()
+
+const handleRecommendBtn = () => {
+  store.getSimilarMovies()
+  router.push({ name: 'recommend' })
+}
 </script>
 
 <style lang="scss" scoped></style>
