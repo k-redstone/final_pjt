@@ -4,8 +4,8 @@ import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SimlarMovieView from '@/views/SimilarMovieView.vue'
 import MovieView from '@/views/MovieView.vue'
-import MoviePage from '@/pages/MoviePage.vue'
-import MovieDetailPage from '@/pages/MovieDetailPage.vue'
+import MoviePage from '@/pages/movie/MoviePage.vue'
+import MovieDetailPage from '@/pages/movie/MovieDetailPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
