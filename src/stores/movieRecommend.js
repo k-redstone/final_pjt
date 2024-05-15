@@ -37,8 +37,7 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
 
   const getSimilarMovies = () => {
     if (moodMovieSelectList.value.size === 0) {
-      alert('영화를 최소 1개 이상 선택해주세요')
-      return
+      return true
     }
 
     const params = {
