@@ -8,6 +8,7 @@ export default {
       },
       backgroundImage: {
         'main-img': "url('@/assets/img/background/movieHome.png')",
+        'community-img': "url('@/assets/img/background/computer_person.png')",
         'screen-image': "url('/images/screenshot.png')",
       },
 

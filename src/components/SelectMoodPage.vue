@@ -30,10 +30,8 @@ import { useMovieRecommendStore } from '@/stores/movieRecommend'
 import GlobalButton from './GlobalButton.vue'
 import MoodCard from './MoodCard.vue'
 import { ref } from 'vue'
-
 const store = useMovieRecommendStore()
 const selectedMood = ref('')
-
 const moods = ref(['행복해요', '슬퍼요', '화가나요', '따분해요'])
 
 const handleSelect = (mood) => {
@@ -44,8 +42,8 @@ const submitMood = () => {
   if (selectedMood.value === '') {
     return
   }
+  window.location.href = '/#selectMoviePage'
   store.handleMoodSelect(selectedMood.value)
-  alert(`${selectedMood.value}가 선택되었습니다.`)
 }
 </script>
 

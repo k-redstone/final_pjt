@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: 'summer';
-  src: url('./fonts/HSYeoleum2.0.ttf');
+  src: url('/fonts/HSYeoleum2.0.ttf');
 }
 @font-face {
   font-family: 'kbiz';
-  src: url('./fonts/KBIZ.ttf');
+  src: url('/fonts/KBIZ.ttf');
 }
 @font-face {
   font-family: 'kbizH';
-  src: url('./fonts/KBIZ_H.ttf');
+  src: url('/fonts/KBIZ_H.ttf');
 }
 @font-face {
   font-family: 'kbizB';
-  src: url('./fonts/KBIZ_B.ttf');
+  src: url('/fonts/KBIZ_B.ttf');
 }
 @font-face {
   font-family: 'kbizR';
-  src: url('./fonts/KBIZ_R.ttf');
+  src: url('/fonts/KBIZ_R.ttf');
 }
