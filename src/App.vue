@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="fixed w-full min-h-screen bg-community-img bg-cover -z-20">
+    <div class="fixed w-full min-h-screen bg-community-img bg-cover -z-50">
       <div class="min-h-screen bg-opacityGray"></div>
     </div>
     <div class="min-h-screen w-full">

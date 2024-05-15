@@ -1,16 +1,8 @@
 <template>
   <div class="flex flex-col">
-    <!-- 네비게이션바 -->
-    <HomeLayout>
-      <header class="fixed z-50 w-[1280px]">
-        <NavBar />
-      </header>
-    </HomeLayout>
     <div>
       <div v-show="!isLogin">
-        <HomeLayout>
-          <LandingPage />
-        </HomeLayout>
+        <LandingPage />
       </div>
       <swiper-container
         v-show="isLogin"
@@ -24,25 +16,25 @@
           clickable: true,
         }"
         :modules="[Mousewheel, Pagination, Navigation]"
-        class="fixed w-full h-screen z-0"
+        class="fixed w-full h-screen top-0 left-0"
         init="false"
       >
         <swiper-slide data-hash="mainPage">
-          <HomeLayout>
+          <WrapLayout>
             <MainPage />
-          </HomeLayout>
+          </WrapLayout>
         </swiper-slide>
         <swiper-slide data-hash="selectMoodPage">
           <div class="absolute w-screen h-screen bg-opacityGray"></div>
-          <HomeLayout>
+          <WrapLayout>
             <SelectMoodPage />
-          </HomeLayout>
+          </WrapLayout>
         </swiper-slide>
         <swiper-slide data-hash="selectMoviePage">
           <div class="absolute w-screen h-screen bg-opacityGray"></div>
-          <HomeLayout>
+          <WrapLayout>
             <SelectMoviePage />
-          </HomeLayout>
+          </WrapLayout>
         </swiper-slide>
       </swiper-container>
     </div>
@@ -57,8 +49,8 @@ import MainPage from '@/pages/mood/MainPage.vue'
 import SelectMoodPage from '@/pages/mood/SelectMoodPage.vue'
 import SelectMoviePage from '@/pages/mood/SelectMoviePage.vue'
 import LandingPage from '@/pages/LandingPage.vue'
-import HomeLayout from '@/components/HomeLayout.vue'
-import NavBar from '@/components/NavBar.vue'
+import WrapLayout from '@/layout/WrapLayout.vue'
+
 register()
 
 const isLogin = ref(true)
