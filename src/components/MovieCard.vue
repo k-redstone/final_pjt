@@ -6,7 +6,7 @@
     >
       <div
         class="w-full h-[245px] rounded-sm object-cover"
-        :class="{ 'border-white border-4': isSelect }"
+        :class="{ 'border-red-200 border-4': isSelect }"
       >
         <img
           :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
@@ -35,7 +35,6 @@ const handleMovieSelect = (movieId) => {
     return
   }
   if (store.moodMovieSelectCount === 3) {
-    alert('영화는 최대 3개 선택할 수 있습니다.')
     return
   }
   isSelect.value = true

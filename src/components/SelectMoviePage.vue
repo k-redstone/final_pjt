@@ -8,7 +8,10 @@
         <div v-else>
           <!-- title -->
           <div class="flex items-center w-full">
-            <h1 class="text-white text-5xl grow">Q. 어떤 영화가 취향이신가요?</h1>
+            <h1 class="text-white text-5xl">Q. 어떤 영화가 취향이신가요?</h1>
+            <p class="grow text-red-200 text-xl ml-3">
+              {{ store.moodMovieSelectCount === 3 ? '최대 3개를 선택할 수 있습니다.' : null }}
+            </p>
             <div class="">
               <GlobalButton
                 class="mr-5"
