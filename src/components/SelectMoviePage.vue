@@ -19,7 +19,7 @@
                 :text="'초기화'"
                 @click="store.clearMoodMovieSelctList"
               />
-              <GlobalButton :type="'mint'" :text="'추천 받기'" />
+              <GlobalButton :type="'mint'" :text="'추천 받기'" @click="store.getSimilarMovies" />
             </div>
           </div>
           <div class="h-[600px] mt-10">
