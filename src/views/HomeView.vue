@@ -1,43 +1,51 @@
 <template>
-  <div>
-    <div class="w-full h-screen" v-show="!isLogin">
-      <HomeLayout>
-        <LandingPage />
-      </HomeLayout>
+  <div class="flex flex-col">
+    <!-- 네비게이션바 -->
+    <HomeLayout>
+      <header class="fixed z-50">
+        <NavBar />
+      </header>
+    </HomeLayout>
+    <div>
+      <div v-show="!isLogin">
+        <HomeLayout>
+          <LandingPage />
+        </HomeLayout>
+      </div>
+      <swiper-container
+        v-show="isLogin"
+        :hashNavigation="{
+          watchState: true,
+        }"
+        :direction="'vertical'"
+        :slidesPerView="1"
+        :mousewheel="true"
+        :pagination="{
+          clickable: true,
+        }"
+        :modules="[Mousewheel, Pagination, Navigation]"
+        class="fixed w-full h-screen z-0"
+        init="false"
+      >
+        <swiper-slide data-hash="mainPage">
+          <HomeLayout>
+            <MainPage />
+          </HomeLayout>
+        </swiper-slide>
+        <swiper-slide data-hash="selectMoodPage">
+          <div class="absolute w-screen h-screen bg-opacityGray"></div>
+          <HomeLayout>
+            <SelectMoodPage />
+          </HomeLayout>
+        </swiper-slide>
+        <swiper-slide data-hash="selectMoviePage">
+          <div class="absolute w-screen bg-opacityGray"></div>
+          <HomeLayout>
+            <SelectMoviePage />
+          </HomeLayout>
+        </swiper-slide>
+      </swiper-container>
     </div>
-    <swiper-container
-      v-show="isLogin"
-      :hashNavigation="{
-        watchState: true,
-      }"
-      :direction="'vertical'"
-      :slidesPerView="1"
-      :mousewheel="true"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="[Mousewheel, Pagination, Navigation]"
-      class="w-full h-screen"
-      init="false"
-    >
-      <swiper-slide data-hash="mainPage">
-        <HomeLayout>
-          <MainPage />
-        </HomeLayout>
-      </swiper-slide>
-      <swiper-slide data-hash="selectMoodPage">
-        <div class="absolute w-screen h-screen bg-opacityGray"></div>
-        <HomeLayout>
-          <SelectMoodPage />
-        </HomeLayout>
-      </swiper-slide>
-      <swiper-slide data-hash="selectMoviePage">
-        <div class="absolute w-screen h-screen bg-opacityGray"></div>
-        <HomeLayout>
-          <SelectMoviePage />
-        </HomeLayout>
-      </swiper-slide>
-    </swiper-container>
   </div>
 </template>
 
@@ -48,9 +56,9 @@ import { Mousewheel, Pagination, Navigation } from 'swiper/modules'
 import MainPage from '@/components/MainPage.vue'
 import SelectMoodPage from '@/components/SelectMoodPage.vue'
 import SelectMoviePage from '@/components/SelectMoviePage.vue'
-import HomeLayout from '@/components/HomeLayout.vue'
 import LandingPage from '@/components/LandingPage.vue'
-
+import HomeLayout from '@/components/HomeLayout.vue'
+import NavBar from '@/components/NavBar.vue'
 register()
 
 const isLogin = ref(true)

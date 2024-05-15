@@ -1,7 +1,10 @@
 <template>
-  <div class="pt-[100px]">
+  <div>
     <HomeLayout>
-      <div class="flex justify-center mt-24">
+      <header>
+        <NavBar />
+      </header>
+      <div class="flex justify-center mt-12 pt-[100px]">
         <div class="bg-gray w-[525px] px-4 py-2 rounded-lg">
           <div class="flex flex-col items-center">
             <!-- title -->
@@ -53,6 +56,7 @@
 <script setup>
 import HomeLayout from '@/components/HomeLayout.vue'
 import GlobalButton from '@/components/GlobalButton.vue'
+import NavBar from '@/components/NavBar.vue'
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-14">
+  <div class="pt-14">
     <nav class="flex font-bold">
       <!-- link -->
       <div class="grow">
