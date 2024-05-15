@@ -27,7 +27,9 @@
             <span>{{ movieData.overview }}</span>
           </div>
         </div>
-        <div class="bg-white rounded-lg mt-10 p-6 text-black flex flex-col gap-y-3 mb-20">
+        <div
+          class="bg-white rounded-lg mt-10 p-6 text-black flex flex-col gap-y-3 mb-20 overflow-y-auto"
+        >
           <h3 class="text-2xl">감상평</h3>
           <form class="border p-3 border-black" @submit.prevent="submitReview">
             <p>유저이름</p>
