@@ -21,6 +21,21 @@ export default {
       colors: {
         mint: '#60F2BE',
       },
+
+      keyframes: {
+        slideDown: {
+          '0% ': { transform: 'translateY(30px)' },
+          '100%': { transform: 'translateY(40px)' },
+        },
+        slideUp: {
+          '100% ': { transform: 'translateY(40px)' },
+          '0%': { transform: 'translateY(30px)' },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 0.3s linear',
+        slideUp: 'slideUp 0.3s linear',
+      },
       fontFamily: {
         summer: ['summer', 'sans-serif'],
         kbiz: ['kbiz', 'sans-serif'],
