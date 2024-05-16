@@ -5,9 +5,11 @@
         <h1 class="text-white text-5xl">자유게시판</h1>
       </div>
       <div>
-        <CommunityCard />
-        <CommunityCard />
-        <CommunityCard />
+        <div v-for="num in 3" class="cursor-pointer" :key="num">
+          <RouterLink :to="{ name: 'communityDetail', params: { postId: num } }">
+            <CommunityCard />
+          </RouterLink>
+        </div>
       </div>
     </main>
   </div>
@@ -15,6 +17,7 @@
 
 <script setup>
 import CommunityCard from '@/components/CommunityCard.vue'
+import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped></style>
