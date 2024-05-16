@@ -3,7 +3,7 @@
     <nav class="flex font-bold items-center">
       <!-- link -->
       <div class="grow">
-        <ul class="flex text-2xl text-white items-center gap-x-5">
+        <ul class="flex text-2xl text-white items-end gap-x-5">
           <RouterLink :to="{ name: 'home' }">
             <li class="mr-3">
               <div class="relative w-[82px] h-[50px]">
