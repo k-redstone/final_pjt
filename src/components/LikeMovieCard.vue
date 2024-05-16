@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center">
-    <div class="w-[250px] text-white text-base font-kbizR">
-      <div class="h-[375px] rounded-sm object-cover">
+    <div class="w-[200px] text-white text-base font-kbizR">
+      <div class="h-[301px] rounded-sm object-cover">
         <img
           :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
           alt="movie_poster"

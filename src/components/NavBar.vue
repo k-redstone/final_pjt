@@ -22,16 +22,25 @@
           </RouterLink>
         </ul>
       </div>
-      <div class="flex items-center text-white">
+      <RouterLink
+        class="flex items-center text-white"
+        :to="{ name: 'profile', params: { username: username } }"
+      >
         <span class="material-symbols-outlined text-white text-3xl mr-4"> account_circle </span>
         <span class="text-xl font-kbizR">admin</span>
-      </div>
+      </RouterLink>
     </nav>
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+// 임시
+import { ref } from 'vue'
+const username = ref('Admin')
+// 프로필 페이지 이동할 때 사용
+const store = useAuthStore()
 </script>
 
 <style lang="scss" scoped></style>
