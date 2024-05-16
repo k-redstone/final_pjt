@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <div
-      class="w-[162px] h-[276px] text-white text-base font-kbizR"
-      @click="handleMovieSelect(movieData.id)"
-    >
+  <div class="flex justify-center">
+    <div class="w-[102px] text-white text-base font-kbizR" @click="handleMovieSelect(movieData.id)">
       <div
-        class="w-full h-[245px] rounded-sm object-cover"
+        class="h-[153px] rounded-sm object-cover box-border"
         :class="{ 'border-red-200 border-4': isSelect }"
       >
         <img
@@ -13,7 +10,7 @@
           alt="movie_poster"
         />
       </div>
-      <p class="text-center">{{ movieData.title }}</p>
+      <p class="pt-5 text-center">{{ movieData.title }}</p>
     </div>
   </div>
 </template>

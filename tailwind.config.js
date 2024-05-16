@@ -10,6 +10,7 @@ export default {
         'main-img': "url('@/assets/img/background/movieHome.png')",
         'community-img': "url('@/assets/img/background/computer_person.png')",
         'screen-image': "url('/images/screenshot.png')",
+        'logo-img': "url('@/assets/img/logo.png')",
       },
 
       backgroundColor: {
