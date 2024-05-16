@@ -21,11 +21,6 @@
             강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.
           </p>
         </div>
-        <hr />
-        <div class="flex items-center mt-3 gap-x-3">
-          <span>좋아요</span>
-          <span>댓글</span>
-        </div>
       </div>
       <div
         class="bg-white rounded-lg mt-10 p-6 text-black flex flex-col gap-y-3 mb-20 overflow-y-auto"
