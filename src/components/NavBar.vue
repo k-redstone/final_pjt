@@ -1,17 +1,24 @@
 <template>
-  <div class="pt-14 w-full">
-    <nav class="flex font-bold">
+  <div class="pt-10 w-full">
+    <nav class="flex font-bold items-center">
       <!-- link -->
       <div class="grow">
-        <ul class="flex text-2xl text-white">
+        <ul class="flex text-2xl text-white items-end gap-x-5">
           <RouterLink :to="{ name: 'home' }">
-            <li class="mr-[12px]">logo</li>
+            <li class="mr-3">
+              <div class="relative w-[82px] h-[50px]">
+                <img class="absolute w-full h-full" src="@/assets/img/logo.png" alt="logo_img" />
+              </div>
+            </li>
           </RouterLink>
-          <RouterLink :to="{ name: 'home' }">
-            <li class="mx-6">Home</li>
+          <!-- <RouterLink :to="{ name: 'home' }">
+            <li>Home</li>
+          </RouterLink> -->
+          <RouterLink :to="{ name: 'movie' }">
+            <li>Movie</li>
           </RouterLink>
           <RouterLink :to="{ name: 'movie' }">
-            <li class="mx-6">Movie</li>
+            <li>Community</li>
           </RouterLink>
         </ul>
       </div>

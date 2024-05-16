@@ -22,9 +22,9 @@
               <GlobalButton :type="'mint'" :text="'추천 받기'" @click="handleRecommendBtn" />
             </div>
           </div>
-          <div class="h-[600px] mt-10">
+          <div class="h-[500px] mt-12">
             <swiper-container
-              class="h-[600px]"
+              class="h-[500px]"
               :slidesPerView="4"
               :grid="{
                 rows: 2,
