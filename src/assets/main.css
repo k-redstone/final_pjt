@@ -22,3 +22,7 @@
   font-family: 'kbizR';
   src: url('/fonts/KBIZ_R.ttf');
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
