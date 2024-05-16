@@ -17,7 +17,7 @@
           <RouterLink :to="{ name: 'movie' }">
             <li>Movie</li>
           </RouterLink>
-          <RouterLink :to="{ name: 'movie' }">
+          <RouterLink :to="{ name: 'community' }">
             <li>Community</li>
           </RouterLink>
         </ul>

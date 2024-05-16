@@ -1,11 +1,12 @@
 <template>
   <div class="flex flex-col gap-y-2">
-    <P>유저이름</P>
-    <p>comment</p>
-    <div class="flex">
-      <p class="grow">시간</p>
-      <p>좋아요</p>
+    <div class="flex gap-x-3">
+      <RouterLink :to="{ name: 'profile', params: { username: '유저이름' } }">
+        <P>유저이름</P>
+      </RouterLink>
+      <p class="text-gray-400">시간</p>
     </div>
+    <p>comment</p>
   </div>
 </template>
 
