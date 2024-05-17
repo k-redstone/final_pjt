@@ -23,18 +23,22 @@
         class="bg-white rounded-lg mt-10 p-6 text-black flex flex-col gap-y-3 mb-20 overflow-y-auto"
       >
         <h3 class="text-2xl">댓글</h3>
-        <form class="border p-3 border-black" @submit.prevent="submitComment(postData.article.id)">
-          <p>유저이름</p>
+        <form
+          id="commentForm"
+          class="border p-3 border-black"
+          @submit.prevent="submitComment(postData.article.id)"
+        >
+          <p>{{ store.userInfo.username }}</p>
           <textarea
             id="comment"
             type="text"
             class="h-10 w-full overflow-y-auto resize-none"
             placeholder="댓글을 달아주세요."
-            @input="changeReview"
+            @input="commentInput.changeValue($event)"
           ></textarea>
           <hr />
           <div class="py-2 flex items-center">
-            <p class="grow">글자수 {{ commentLength }}/100</p>
+            <p class="grow">글자수 {{ commentInput.valueLength }}/ {{ commentInput.valueLimit }}</p>
             <GlobalButton :type="'mint'" :text="'댓글 달기'" />
           </div>
         </form>
@@ -53,14 +57,17 @@
 import GlobalButton from '@/components/GlobalButton.vue'
 import ReviewCard from '@/components/ReviewCard.vue'
 import axios from 'axios'
+import useInputLimit from '@/hooks/useInputLimit'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute } from 'vue-router'
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const store = useAuthStore()
 const route = useRoute()
+const commentInput = useInputLimit(100)
+
 const comment = ref({
-  content: '',
+  content: commentInput.inputValue,
 })
 const postData = ref({})
 
@@ -83,26 +90,6 @@ const getPostDetail = () => {
   })
 }
 
-const changeReview = (event) => {
-  if (event.inputType === 'deleteContentBackward') {
-    comment.value.content = event.target.value
-    return
-  }
-  if (event.inputType === 'insertFromPaste') {
-    if (event.target.value.length >= 100) {
-      alert('100자까지 입력할 수 있습니다.')
-      event.target.value = comment.value.content
-      return
-    }
-  }
-  if (commentLength.value >= 100) {
-    alert('100자까지 입력할 수 있습니다.')
-    event.target.value = comment.value.content
-    return
-  }
-  comment.value.content = event.target.value
-}
-
 const submitComment = (postId) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
@@ -115,7 +102,7 @@ const submitComment = (postId) => {
     data: comment.value,
   })
     .then(() => {
-      document.querySelector('#comment').value = ''
+      document.querySelector('#commentForm').reset()
       comment.value.content = ''
       getPostDetail()
     })
@@ -123,10 +110,6 @@ const submitComment = (postId) => {
       console.log(error)
     })
 }
-
-const commentLength = computed(() => {
-  return comment.value.content.length
-})
 </script>
 
 <style scoped></style>

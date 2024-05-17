@@ -6,7 +6,11 @@
       </div>
       <div class="bg-white rounded-lg p-6 text-black flex flex-col gap-y-3 overflow-y-auto">
         <h3 class="text-2xl">게시글 작성하기</h3>
-        <form class="flex flex-col border p-3 border-black" @submit.prevent="submitPost">
+        <form
+          id="freeBoardForm"
+          class="flex flex-col border p-3 border-black"
+          @submit.prevent="submitPost"
+        >
           <!-- <p class="mb-4">{{ store.userInfo.username }}</p> -->
           <label for="freeBoardTitle">제목</label>
           <textarea
@@ -14,7 +18,7 @@
             type="text"
             class="h-10 w-full overflow-y-auto resize-none"
             placeholder="제목을 작성해주세요."
-            v-model="formData.title"
+            @input="titleInput.changeValue($event)"
           />
           <label for="freeBoardContent">내용</label>
           <textarea
@@ -22,12 +26,11 @@
             type="text"
             class="h-14 w-full overflow-y-auto resize-none"
             placeholder="게시글을 작성해주세요."
-            @input="changeContent"
-            v-model="formData.content"
+            @input="contentInput.changeValue($event)"
           ></textarea>
           <hr />
           <div class="py-2 flex items-center">
-            <p class="grow">글자수 {{ contentLength }}/500</p>
+            <p class="grow">글자수 {{ contentInput.valueLength }}/ {{ contentInput.valueLimit }}</p>
             <GlobalButton :type="'mint'" :text="'작성하기'" />
           </div>
         </form>
@@ -49,15 +52,19 @@ import CommunityCard from '@/components/CommunityCard.vue'
 import GlobalButton from '@/components/GlobalButton.vue'
 import axios from 'axios'
 import { useAuthStore } from '@/stores/auth'
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import useInputLimit from '@/hooks/useInputLimit.js'
 
 const store = useAuthStore()
 
-const formData = ref({
-  title: '',
-  content: '',
-})
 const postList = ref([])
+const titleInput = useInputLimit(50)
+const contentInput = useInputLimit(200)
+
+const formData = ref({
+  title: titleInput.inputValue,
+  content: contentInput.inputValue,
+})
 
 onMounted(() => {
   getFreeBoardList()
@@ -79,33 +86,12 @@ const getFreeBoardList = () => {
   })
 }
 
-const changeContent = (event) => {
-  if (event.inputType === 'deleteContentBackward') {
-    formData.value.content = event.target.value
-    return
-  }
-  if (event.inputType === 'insertFromPaste') {
-    if (event.target.value.length >= 500) {
-      alert('500자까지 입력할 수 있습니다.')
-      event.target.value = formData.value.content
-      return
-    }
-  }
-  if (contentLength.value >= 500) {
-    alert('500자까지 입력할 수 있습니다.')
-    event.target.value = formData.value.content
-    return
-  }
-  formData.value.content = event.target.value
-}
-
 const submitPost = () => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
   }
-  console.log(formData.value)
-  console.log(headers)
+
   axios({
     method: 'post',
     url: URL + '/free_board/article/',
@@ -114,6 +100,9 @@ const submitPost = () => {
   })
     .then((res) => {
       console.log(res)
+      formData.value.title = ''
+      formData.value.content = ''
+      document.querySelector('#freeBoardForm').reset()
       getFreeBoardList()
     })
     .catch((error) => {
@@ -139,10 +128,6 @@ const deletepost = (postId) => {
       console.error(error)
     })
 }
-
-const contentLength = computed(() => {
-  return formData.value.content.length
-})
 </script>
 
 <style scoped></style>
