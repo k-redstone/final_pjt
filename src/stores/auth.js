@@ -13,6 +13,7 @@ export const useAuthStore = defineStore(
       password2: '',
       privacy: '',
     })
+    const userInfo = ref({})
     const token = ref(null)
 
     const userLogin = async (formValue) => {
@@ -73,6 +74,21 @@ export const useAuthStore = defineStore(
       }
     }
 
+    const getUserInfo = async (username) => {
+      console.log('asdf')
+      try {
+        const URL = import.meta.env.VITE_BACKEND_URL
+        const res = await axios({
+          method: 'get',
+          url: URL + `/accounts/${username}/profile/`,
+        })
+        console.log(res.data)
+        userInfo.value = res.data
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     const userLogout = async () => {
       try {
         const URL = import.meta.env.VITE_BACKEND_URL
@@ -88,7 +104,18 @@ export const useAuthStore = defineStore(
       }
     }
 
-    return { token, errorMsg, signUpErrorMsg, userLogin, userRegister, userLogout }
+    return {
+      token,
+      errorMsg,
+      userInfo,
+      signUpErrorMsg,
+      userLogin,
+      userRegister,
+      userLogout,
+      getUserInfo,
+    }
   },
-  { persist: [{ paths: ['token'], storage: sessionStorage }] },
+  {
+    persist: [{ storage: sessionStorage }],
+  },
 )

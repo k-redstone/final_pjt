@@ -61,6 +61,7 @@ const fetchLogin = async () => {
   const status = await store.userLogin(formData.value)
   if (status === true) {
     router.push({ name: 'home' })
+    store.getUserInfo(formData.value.username)
   }
   console.log(store.token)
 }

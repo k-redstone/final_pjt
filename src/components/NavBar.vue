@@ -22,13 +22,16 @@
       <div v-show="store.token" class="flex flex-col items-center text-white float-left">
         <div class="flex items-center cursor-pointer peer" @click="handleBoxOpen">
           <span class="material-symbols-outlined text-white text-3xl mr-4"> account_circle </span>
-          <span class="text-xl font-kbizR">admin</span>
+          <span class="text-xl font-kbizR">{{ store.userInfo.nickname }}</span>
         </div>
         <div
           class="absolute hidden peer-hover:block peer-hover:translate-y-8 hover:block hover:translate-y-8"
         >
           <div class="w-full flex flex-col items-center gap-y-2">
-            <RouterLink :to="{ name: 'profile', params: { username: username } }" class="mt-2">
+            <RouterLink
+              :to="{ name: 'profile', params: { username: store.userInfo.username } }"
+              class="mt-2"
+            >
               <span>My Profile</span>
             </RouterLink>
             <span class="cursor-pointer" @click="handleLogout">Logout</span>
