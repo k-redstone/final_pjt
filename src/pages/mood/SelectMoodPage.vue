@@ -42,7 +42,7 @@ const submitMood = () => {
   if (selectedMood.value === '') {
     return
   }
-  window.location.href = '/#selectMoviePage'
+  window.location.href = '/content#selectMoviePage'
   store.handleMoodSelect(selectedMood.value)
 }
 </script>
