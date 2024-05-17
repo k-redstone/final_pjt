@@ -33,7 +33,12 @@
         </form>
       </div>
       <div>
-        <CommunityCard v-for="postData in postList" :postData="postData" :key="postData.id" />
+        <CommunityCard
+          v-for="postData in postList"
+          :postData="postData"
+          :key="postData.id"
+          @delete-post="deletepost"
+        />
       </div>
     </main>
   </div>
@@ -113,6 +118,25 @@ const submitPost = () => {
     })
     .catch((error) => {
       console.log(error)
+    })
+}
+
+const deletepost = (postId) => {
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+
+  axios({
+    method: 'delete',
+    url: URL + `/free_board/${postId}/edit/`,
+    headers: headers,
+  })
+    .then(() => {
+      getFreeBoardList()
+    })
+    .catch((error) => {
+      console.error(error)
     })
 }
 
