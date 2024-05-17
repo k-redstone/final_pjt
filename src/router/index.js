@@ -11,6 +11,7 @@ import MoviePage from '@/pages/movie/MoviePage.vue'
 import MovieDetailPage from '@/pages/movie/MovieDetailPage.vue'
 import MainLayout from '@/layout/MainLayout.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import LandingView from '@/views/LandingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,18 +22,8 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'home',
-          component: HomeView,
-        },
-        {
-          path: '/profile/:username',
-          name: 'profile',
-          component: ProfileView,
-        },
-        {
-          path: '/recommend',
-          name: 'recommend',
-          component: SimlarMovieView,
+          name: 'landing',
+          component: LandingView,
         },
         {
           path: '/login',
@@ -44,8 +35,29 @@ const router = createRouter({
           name: 'signUp',
           component: SignUpView,
         },
+      ],
+    },
+    {
+      path: '/content',
+      component: MainLayout,
+      children: [
         {
-          path: '/community',
+          path: '',
+          name: 'home',
+          component: HomeView,
+        },
+        {
+          path: 'recommend',
+          name: 'recommend',
+          component: SimlarMovieView,
+        },
+        {
+          path: 'profile/:username',
+          name: 'profile',
+          component: ProfileView,
+        },
+        {
+          path: 'community',
           component: CommunityView,
           children: [
             {
@@ -62,7 +74,7 @@ const router = createRouter({
         },
 
         {
-          path: '/movie',
+          path: 'movie',
           component: MovieView,
           children: [
             {
@@ -81,5 +93,9 @@ const router = createRouter({
     },
   ],
 })
+
+// router.beforeEach((to, from) => {
+
+// })
 
 export default router

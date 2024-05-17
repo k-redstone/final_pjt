@@ -15,7 +15,7 @@
                 id="userId"
                 class="w-[395px] h-[48px] pl-2 rounded-sm"
                 placeholder="아이디를 입력해주세요"
-                v-model="userId"
+                v-model="formData.username"
               />
             </div>
             <!-- password form -->
@@ -27,11 +27,11 @@
                 type="password"
                 autoComplete="off"
                 placeholder="비밀번호를 입력해주세요"
-                v-model="password"
+                v-model="formData.password"
               />
             </div>
             <div class="flex justify-center text-red-300 font-medium text-lg mt-6 w-[395px]">
-              <p>{{ errorMsg }}</p>
+              <p>{{ store.errorMsg }}</p>
             </div>
             <!-- login btn -->
             <div class="flex justify-center py-5">
@@ -46,31 +46,23 @@
 
 <script setup>
 import GlobalButton from '@/components/GlobalButton.vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
-
 const store = useAuthStore()
-const userId = ref('')
-const password = ref('')
 
-const errorMsg = ref('')
+const formData = ref({
+  username: '',
+  password: '',
+})
+const router = useRouter()
 
-const fetchLogin = () => {
-  errorMsg.value = ''
-
-  if (userId.value === '' || password.value === '') {
-    errorMsg.value = '아이디 또는 비빌번호를 입력해주세요'
-    return
+const fetchLogin = async () => {
+  const status = await store.userLogin(formData.value)
+  if (status === true) {
+    router.push({ name: 'home' })
   }
-
-  const data = {
-    userId: userId.value,
-    password: password.value,
-  }
-
-  store.userLogin(data)
-  userId.value = ''
-  password.value = ''
+  console.log(store.token)
 }
 </script>
 

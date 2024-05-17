@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-col">
     <div>
-      <div v-show="!isLogin">
-        <LandingPage />
-      </div>
       <swiper-container
         v-show="isLogin"
         :hashNavigation="{
@@ -48,7 +45,6 @@ import { Mousewheel, Pagination, Navigation } from 'swiper/modules'
 import MainPage from '@/pages/mood/MainPage.vue'
 import SelectMoodPage from '@/pages/mood/SelectMoodPage.vue'
 import SelectMoviePage from '@/pages/mood/SelectMoviePage.vue'
-import LandingPage from '@/pages/LandingPage.vue'
 import WrapLayout from '@/layout/WrapLayout.vue'
 
 register()
