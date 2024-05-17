@@ -9,7 +9,11 @@
       <!-- serializer수정 후 변경 -->
       <!-- <div v-show="store.userInfo.id === postData.userId" class="flex gap-x-4"> -->
       <div class="flex gap-x-4">
-        <span class="text-lg cursor-pointer">수정</span>
+        <RouterLink
+          class="text-lg cursor-pointer"
+          :to="{ name: 'communityEdit', params: { postId: postData.id } }"
+          >수정</RouterLink
+        >
         <span class="text-lg cursor-pointer" @click="deletePost(postData.id)">삭제</span>
       </div>
     </div>

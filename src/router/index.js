@@ -6,6 +6,8 @@ import SimlarMovieView from '@/views/SimilarMovieView.vue'
 import MovieView from '@/views/MovieView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import CommunityPage from '@/pages/community/CommunityPage.vue'
+import CommunityCreatePage from '@/pages/community/CommunityCreatePage.vue'
+import CommunityEditPage from '@/pages/community/CommunityEditPage.vue'
 import CommunityDetailPage from '@/pages/community/CommunityDetailPage.vue'
 import MoviePage from '@/pages/movie/MoviePage.vue'
 import MovieDetailPage from '@/pages/movie/MovieDetailPage.vue'
@@ -64,6 +66,16 @@ const router = createRouter({
               path: '',
               name: 'community',
               component: CommunityPage,
+            },
+            {
+              path: 'create',
+              name: 'communityCreate',
+              component: CommunityCreatePage,
+            },
+            {
+              path: ':postId/edit',
+              name: 'communityEdit',
+              component: CommunityEditPage,
             },
             {
               path: ':postId',
