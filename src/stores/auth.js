@@ -5,110 +5,56 @@ import { ref } from 'vue'
 export const useAuthStore = defineStore(
   'auth',
   () => {
-    const errorMsg = ref('')
-    const signUpErrorMsg = ref({
-      username: '',
-      nickname: '',
-      password1: '',
-      password2: '',
-      privacy: '',
-    })
-    const userInfo = ref({})
+    const userInfo = ref({ username: 'null' })
     const token = ref(null)
 
     const userLogin = async (formValue) => {
-      errorMsg.value = ''
-      if (formValue.username === '' || formValue.password === '') {
-        errorMsg.value = '아이디 또는 비빌번호를 입력해주세요'
-        return
-      }
+      const URL = import.meta.env.VITE_BACKEND_URL
 
-      try {
-        console.log(formValue)
-        const URL = import.meta.env.VITE_BACKEND_URL
-        const res = await axios({
-          method: 'post',
-          url: URL + '/accounts/login/',
-          data: formValue,
-        })
-        console.log(res)
+      await axios({
+        method: 'post',
+        url: URL + '/accounts/login/',
+        data: formValue,
+      }).then((res) => {
         token.value = res.data.token
-        return true
-      } catch (error) {
-        console.log(error)
-
-        errorMsg.value = error.response.data.message[0]
-        return false
-      }
+      })
     }
 
     const userRegister = async (formValue) => {
-      Object.keys(signUpErrorMsg.value).forEach((key) => {
-        signUpErrorMsg.value[key] = ''
-      })
-      console.log(formValue)
-
-      if (formValue.isPosChecked === false || formValue.isPrivacyChecked === false) {
-        signUpErrorMsg.value.privacy = '이용약관에 동의해주세요'
-        return
-      }
-      try {
-        const URL = import.meta.env.VITE_BACKEND_URL
-        const res = await axios({
-          method: 'post',
-          url: URL + '/accounts/registration/',
-          data: formValue,
-        })
-        console.log(res)
+      const URL = import.meta.env.VITE_BACKEND_URL
+      await axios({
+        method: 'post',
+        url: URL + '/accounts/registration/',
+        data: formValue,
+      }).then((res) => {
         token.value = res.data.key
-        return true
-      } catch (error) {
-        // console.log(error)
-        Object.keys(error.response.data).forEach((key) => {
-          signUpErrorMsg.value[key] = error.response.data[key][0]
-        })
-        if (error.response.data['non_field_errors']) {
-          signUpErrorMsg.value.password2 = error.response.data['non_field_errors'][0]
-        }
-        return false
-      }
+      })
     }
 
     const getUserInfo = async (username) => {
-      console.log('asdf')
-      try {
-        const URL = import.meta.env.VITE_BACKEND_URL
-        const res = await axios({
-          method: 'get',
-          url: URL + `/accounts/${username}/profile/`,
-        })
-        console.log(res.data)
+      const URL = import.meta.env.VITE_BACKEND_URL
+      await axios({
+        method: 'get',
+        url: URL + `/accounts/${username}/profile/`,
+      }).then((res) => {
         userInfo.value = res.data
-      } catch (error) {
-        console.error(error)
-      }
+      })
     }
 
     const userLogout = async () => {
-      try {
-        const URL = import.meta.env.VITE_BACKEND_URL
-        const res = await axios({
-          method: 'post',
-          url: URL + '/accounts/logout/',
-        })
+      const URL = import.meta.env.VITE_BACKEND_URL
+      await axios({
+        method: 'post',
+        url: URL + '/accounts/logout/',
+      }).then(() => {
         token.value = null
-        console.log(res)
-        return true
-      } catch (error) {
-        return false
-      }
+        userInfo.value = { username: 'null' }
+      })
     }
 
     return {
       token,
-      errorMsg,
       userInfo,
-      signUpErrorMsg,
       userLogin,
       userRegister,
       userLogout,

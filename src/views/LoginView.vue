@@ -31,7 +31,7 @@
               />
             </div>
             <div class="flex justify-center text-red-300 font-medium text-lg mt-6 w-[395px]">
-              <p>{{ store.errorMsg }}</p>
+              <p>{{ errorMsg }}</p>
             </div>
             <!-- login btn -->
             <div class="flex justify-center py-5">
@@ -55,15 +55,24 @@ const formData = ref({
   username: '',
   password: '',
 })
+const errorMsg = ref('')
+
 const router = useRouter()
 
 const fetchLogin = async () => {
-  const status = await store.userLogin(formData.value)
-  if (status === true) {
-    router.push({ name: 'home' })
-    store.getUserInfo(formData.value.username)
+  errorMsg.value = ''
+  if (!formData.value.username || !formData.value.password) {
+    errorMsg.value = '아이디 또는 비빌번호를 입력해주세요'
+    return
   }
-  console.log(store.token)
+
+  try {
+    await store.userLogin(formData.value)
+    await store.getUserInfo(formData.value.username)
+    router.push({ name: 'home' })
+  } catch (error) {
+    errorMsg.value = error.response.data.message[0]
+  }
 }
 </script>
 

@@ -22,7 +22,7 @@
       <div v-show="store.token" class="flex flex-col items-center text-white float-left">
         <div class="flex items-center cursor-pointer peer" @click="handleBoxOpen">
           <span class="material-symbols-outlined text-white text-3xl mr-4"> account_circle </span>
-          <span class="text-xl font-kbizR">{{ store.userInfo.nickname }}</span>
+          <span class="text-xl font-kbizR">{{ store.userInfo.username }}</span>
         </div>
         <div
           class="absolute hidden peer-hover:block peer-hover:translate-y-8 hover:block hover:translate-y-8"
@@ -47,8 +47,7 @@ import { useRouter, RouterLink } from 'vue-router'
 
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
-// 임시
-const username = ref('Admin')
+
 // 프로필 페이지 이동할 때 사용
 const store = useAuthStore()
 const router = useRouter()
@@ -59,10 +58,11 @@ const handleBoxOpen = () => {
 }
 
 const handleLogout = async () => {
-  console.log('cl')
-  const status = await store.userLogout()
-  if (status === true) {
+  try {
+    await store.userLogout()
     router.push({ name: 'landing' })
+  } catch (error) {
+    console.error(error)
   }
 }
 </script>

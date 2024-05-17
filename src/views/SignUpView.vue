@@ -20,7 +20,7 @@
             </div>
             <!-- error MSG -->
             <div class="text-red-300 text-sm w-[395px]">
-              <p>{{ store.signUpErrorMsg.username }}</p>
+              <p>{{ errorMsg.username }}</p>
             </div>
             <!-- nickname form -->
             <div class="mb-1 flex flex-col justify-between">
@@ -34,7 +34,7 @@
             </div>
             <!-- error MSG -->
             <div class="text-red-300 text-sm w-[395px]">
-              <p>{{ store.signUpErrorMsg.nickname }}</p>
+              <p>{{ errorMsg.nickname }}</p>
             </div>
             <!-- password form -->
             <div class="flex flex-col justify-between">
@@ -50,7 +50,7 @@
             </div>
             <!-- error MSG -->
             <div class="text-red-300 text-sm w-[395px]">
-              <p>{{ store.signUpErrorMsg.password1 }}</p>
+              <p>{{ errorMsg.password1 }}</p>
             </div>
             <!-- confirm_password form -->
             <div class="flex flex-col justify-between">
@@ -66,7 +66,7 @@
             </div>
             <!-- error MSG -->
             <div class="text-red-300 text-sm w-[395px]">
-              <p>{{ store.signUpErrorMsg.password2 }}</p>
+              <p>{{ errorMsg.password2 }}</p>
             </div>
             <!-- privacy -->
             <div class="mt-3">
@@ -91,7 +91,7 @@
               </div>
               <!-- error MSG -->
               <div class="text-red-300 text-sm w-[395px]">
-                <p>{{ store.signUpErrorMsg.privacy }}</p>
+                <p>{{ errorMsg.privacy }}</p>
               </div>
             </div>
 
@@ -127,11 +127,33 @@ const formData = ref({
   isPosChecked: false,
   isPrivacyChecked: false,
 })
+const errorMsg = ref({
+  username: '',
+  nickname: '',
+  password1: '',
+  password2: '',
+  privacy: '',
+})
 
 const fetchRegister = async () => {
-  const status = await store.userRegister(formData.value)
-  if (status === true) {
+  Object.keys(errorMsg.value).forEach((key) => {
+    errorMsg.value[key] = ''
+  })
+  if (formData.value.isPosChecked === false || formData.value.isPrivacyChecked === false) {
+    errorMsg.value.privacy = '이용약관에 동의해주세요'
+    return
+  }
+  try {
+    await store.userRegister(formData.value)
+    await store.getUserInfo(formData.value.username)
     router.push({ name: 'home' })
+  } catch (error) {
+    Object.keys(error.response.data).forEach((key) => {
+      errorMsg.value[key] = error.response.data[key][0]
+    })
+    if (error.response.data['non_field_errors']) {
+      errorMsg.value.password2 = error.response.data['non_field_errors'][0]
+    }
   }
 }
 </script>
