@@ -13,7 +13,8 @@
           <span class="text-lg">삭제</span>
         </div>
         <!-- 본문 -->
-        <div class="px-20 py-5">
+        <div class="px-20 py-2">
+          <p class="text-xl mb-4">{{ postData.article?.title }}</p>
           <p>
             {{ postData.article?.content }}
           </p>
@@ -44,7 +45,12 @@
         </form>
         <div>
           <div v-for="comment in postData?.comments" :key="comment.id">
-            <ReviewCard class="py-5" :comment="comment" />
+            <ReviewCard
+              class="py-5"
+              :comment="comment"
+              @delete-comment="deleteComment"
+              @edit-comment="editComment"
+            />
             <hr />
           </div>
         </div>
@@ -108,6 +114,44 @@ const submitComment = (postId) => {
     })
     .catch((error) => {
       console.log(error)
+    })
+}
+
+const deleteComment = (postId, commentId) => {
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+
+  axios({
+    method: 'delete',
+    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    headers: headers,
+  })
+    .then(() => {
+      getPostDetail()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+const editComment = (postId, commentId, formData) => {
+  console.log(formData)
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+  axios({
+    method: 'put',
+    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    headers: headers,
+    data: formData,
+  })
+    .then(() => {
+      getPostDetail()
+    })
+    .catch((error) => {
+      console.error(error)
     })
 }
 </script>
