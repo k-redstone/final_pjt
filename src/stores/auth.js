@@ -73,7 +73,22 @@ export const useAuthStore = defineStore(
       }
     }
 
-    return { token, errorMsg, signUpErrorMsg, userLogin, userRegister }
+    const userLogout = async () => {
+      try {
+        const URL = import.meta.env.VITE_BACKEND_URL
+        const res = await axios({
+          method: 'post',
+          url: URL + '/accounts/logout/',
+        })
+        token.value = null
+        console.log(res)
+        return true
+      } catch (error) {
+        return false
+      }
+    }
+
+    return { token, errorMsg, signUpErrorMsg, userLogin, userRegister, userLogout }
   },
   { persist: [{ paths: ['token'], storage: sessionStorage }] },
 )

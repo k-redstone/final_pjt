@@ -4,7 +4,7 @@
       <!-- link -->
       <div class="grow">
         <ul class="flex text-2xl text-white items-end gap-x-5">
-          <RouterLink :to="{ name: 'home' }">
+          <RouterLink :to="{ name: 'landing' }">
             <li class="mr-3">
               <div class="relative w-[82px] h-[50px]">
                 <img class="absolute w-full h-full" src="@/assets/img/logo.png" alt="logo_img" />
@@ -19,7 +19,7 @@
           </RouterLink>
         </ul>
       </div>
-      <div class="flex flex-col items-center text-white float-left">
+      <div v-show="store.token" class="flex flex-col items-center text-white float-left">
         <div class="flex items-center cursor-pointer peer" @click="handleBoxOpen">
           <span class="material-symbols-outlined text-white text-3xl mr-4"> account_circle </span>
           <span class="text-xl font-kbizR">admin</span>
@@ -31,7 +31,7 @@
             <RouterLink :to="{ name: 'profile', params: { username: username } }" class="mt-2">
               <span>My Profile</span>
             </RouterLink>
-            <span>Logout</span>
+            <span class="cursor-pointer" @click="handleLogout">Logout</span>
           </div>
         </div>
       </div>
@@ -40,18 +40,27 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useRouter, RouterLink } from 'vue-router'
+
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 // 임시
 const username = ref('Admin')
 // 프로필 페이지 이동할 때 사용
 const store = useAuthStore()
-
+const router = useRouter()
 const isBoxOpen = ref(false)
 
 const handleBoxOpen = () => {
   isBoxOpen.value = !isBoxOpen.value
+}
+
+const handleLogout = async () => {
+  console.log('cl')
+  const status = await store.userLogout()
+  if (status === true) {
+    router.push({ name: 'landing' })
+  }
 }
 </script>
 

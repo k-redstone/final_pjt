@@ -94,8 +94,21 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach((to, from) => {
+import { useAuthStore } from '@/stores/auth'
 
-// })
+router.beforeEach((to, from, next) => {
+  const store = useAuthStore()
+  if (!store.token && to.name !== 'landing' && to.name !== 'login' && to.name !== 'signUp') {
+    alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.')
+    next({ name: 'login' })
+  } else if (
+    store.token &&
+    (to.name === 'landing' || to.name === 'login' || to.name === 'signUp')
+  ) {
+    next({ name: 'home' })
+  } else {
+    next()
+  }
+})
 
 export default router
