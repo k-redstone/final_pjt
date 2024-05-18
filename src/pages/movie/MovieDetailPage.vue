@@ -31,23 +31,27 @@
           class="bg-white rounded-lg mt-10 p-6 text-black flex flex-col gap-y-3 mb-20 overflow-y-auto"
         >
           <h3 class="text-2xl">감상평</h3>
-          <form class="border p-3 border-black" @submit.prevent="submitReview">
+          <form
+            id="reviewForm"
+            class="border p-3 border-black"
+            @submit.prevent="submitReview(movieData.id)"
+          >
             <p>유저이름</p>
             <textarea
               type="text"
               class="h-10 w-full overflow-y-auto resize-none"
               placeholder="감상평을 알려주세요"
-              @input="changeReview"
+              @input="reviewInput.changeValue($event)"
             ></textarea>
             <hr />
             <div class="py-2 flex items-center">
-              <p class="grow">글자수 {{ reviewLength }}/100</p>
+              <p class="grow">글자수 {{ reviewInput.valueLength }}/{{ reviewInput.valueLimit }}</p>
               <GlobalButton :type="'mint'" :text="'댓글 달기'" />
             </div>
           </form>
           <div>
-            <div v-for="num in 10">
-              <ReviewCard class="py-5" />
+            <div v-for="review in reviewData" :key="review.id">
+              <ReviewCard class="py-5" :comment="review" />
               <hr />
             </div>
           </div>
@@ -60,13 +64,30 @@
 <script setup>
 import axios from 'axios'
 import GlobalButton from '@/components/GlobalButton.vue'
+import useInputLimit from '@/hooks/useInputLimit'
 import ReviewCard from '@/components/ReviewCard.vue'
-import { ref, computed, onMounted } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
+
+const reviewInput = useInputLimit(100)
+const store = useAuthStore()
+const route = useRoute()
 
 const movieData = ref({})
-const review = ref('')
+const reviewData = ref([])
+const review = ref({
+  content: reviewInput.inputValue,
+})
+
+// http://127.0.0.1:8000/movie_board/<int:movie_pk>/
 
 onMounted(() => {
+  getMovieDetail()
+  getMovieReview()
+})
+
+const getMovieDetail = () => {
   const URL = 'https://api.themoviedb.org/3/movie/200'
   const params = {
     language: 'ko-KR',
@@ -81,35 +102,45 @@ onMounted(() => {
     .catch((error) => {
       console.error(error)
     })
-})
-
-const changeReview = (event) => {
-  if (event.inputType === 'deleteContentBackward') {
-    review.value = event.target.value
-    return
+}
+const getMovieReview = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
   }
-  if (event.inputType === 'insertFromPaste') {
-    if (event.target.value.length >= 100) {
-      alert('100자까지 입력할 수 있습니다.')
-      event.target.value = review.value
-      return
-    }
-  }
-  if (reviewLength.value >= 100) {
-    alert('100자까지 입력할 수 있습니다.')
-    event.target.value = review.value
-    return
-  }
-  review.value = event.target.value
+  axios({
+    method: 'get',
+    url: URL + `/movie_board/${route.params.movieId}/`,
+    headers: headers,
+  })
+    .then((res) => {
+      reviewData.value = res.data
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
-const submitReview = () => {
-  alert('댓글달기')
+const submitReview = (movieId) => {
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+  axios({
+    method: 'post',
+    url: URL + `/movie_board/${movieId}/comment/`,
+    headers: headers,
+    data: review.value,
+  })
+    .then(() => {
+      document.querySelector('#reviewForm').reset()
+      review.value.content = ''
+      getMovieReview()
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
-
-const reviewLength = computed(() => {
-  return review.value.length
-})
 </script>
 
 <style scoped></style>
