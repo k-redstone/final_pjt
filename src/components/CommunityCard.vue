@@ -3,25 +3,45 @@
     <!-- 유지명 및 기능 -->
     <div class="flex items-center gap-x-4">
       <RouterLink :to="{ name: 'profile', params: { username: '유저이름' } }">
-        <span class="text-2xl font-kbizB underline">유저 이름</span>
+        <span class="text-2xl font-kbizB underline">{{ postData.userId }}</span>
       </RouterLink>
-      <span class="text-lg grow text-gray-400">시간</span>
-      <span class="text-lg">수정</span>
-      <span class="text-lg">삭제</span>
+      <span class="text-lg grow text-gray-400">{{ postData.created_at }}</span>
+      <!-- serializer수정 후 변경 -->
+      <!-- <div v-show="store.userInfo.id === postData.userId" class="flex gap-x-4"> -->
+      <div class="flex gap-x-4">
+        <RouterLink
+          class="text-lg cursor-pointer"
+          :to="{ name: 'communityEdit', params: { postId: postData.id } }"
+          >수정</RouterLink
+        >
+        <span class="text-lg cursor-pointer" @click="deletePost(postData.id)">삭제</span>
+      </div>
     </div>
     <!-- 본문 -->
-    <div class="px-20 py-5">
+    <div class="px-20 py-2">
+      <p class="text-xl mb-4">{{ postData.title }}</p>
       <p>
-        이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화
-        강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이
-        영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화 강추합니다.이 영화
-        강추합니다.이 영화 강추합니다.이 영화 강추합니다.
+        {{ postData.content }}
       </p>
     </div>
     <hr />
-    <div class="flex items-center mt-3 gap-x-3">
-      <span>좋아요</span>
-      <RouterLink :to="{ name: 'communityDetail', params: { postId: postData.postId } }">
+    <div class="flex items-center mt-3 gap-x-5">
+      <div
+        class="flex gap-x-2 items-center cursor-pointer hover:scale-110"
+        @click="fetchLike(postData.id)"
+      >
+        <!-- serializer수정 후 변경 -->
+        <span
+          class="material-symbols-outlined"
+          :class="{
+            'text-red-300': postData.like_user.includes(6),
+          }"
+        >
+          thumb_up
+        </span>
+        <span>{{ postData.like_user.length }}</span>
+      </div>
+      <RouterLink :to="{ name: 'communityDetail', params: { postId: postData.id } }">
         <span class="underline">댓글 3개</span>
       </RouterLink>
     </div>
@@ -30,9 +50,20 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-
+import { useAuthStore } from '@/stores/auth'
 // 추후 백엔드 연결 후 props로 데이터 연동 예정
 defineProps({
   postData: Object,
 })
+
+const emit = defineEmits(['deletePost', 'fetchLike'])
+const store = useAuthStore()
+
+const deletePost = (postId) => {
+  emit('deletePost', postId)
+}
+
+const fetchLike = (postId) => {
+  emit('fetchLike', postId)
+}
 </script>
