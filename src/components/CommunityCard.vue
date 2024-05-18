@@ -25,8 +25,22 @@
       </p>
     </div>
     <hr />
-    <div class="flex items-center mt-3 gap-x-3">
-      <span>좋아요</span>
+    <div class="flex items-center mt-3 gap-x-5">
+      <div
+        class="flex gap-x-2 items-center cursor-pointer hover:scale-110"
+        @click="fetchLike(postData.id)"
+      >
+        <!-- serializer수정 후 변경 -->
+        <span
+          class="material-symbols-outlined"
+          :class="{
+            'text-red-300': postData.like_user.includes(6),
+          }"
+        >
+          thumb_up
+        </span>
+        <span>{{ postData.like_user.length }}</span>
+      </div>
       <RouterLink :to="{ name: 'communityDetail', params: { postId: postData.id } }">
         <span class="underline">댓글 3개</span>
       </RouterLink>
@@ -42,10 +56,14 @@ defineProps({
   postData: Object,
 })
 
-const emit = defineEmits(['deletePost'])
+const emit = defineEmits(['deletePost', 'fetchLike'])
 const store = useAuthStore()
 
 const deletePost = (postId) => {
   emit('deletePost', postId)
+}
+
+const fetchLike = (postId) => {
+  emit('fetchLike', postId)
 }
 </script>

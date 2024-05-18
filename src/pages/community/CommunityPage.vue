@@ -13,6 +13,7 @@
           :postData="postData"
           :key="postData.id"
           @delete-post="deletepost"
+          @fetch-like="fetchLike"
         />
       </div>
     </main>
@@ -60,6 +61,24 @@ const deletepost = (postId) => {
   axios({
     method: 'delete',
     url: URL + `/free_board/${postId}/edit/`,
+    headers: headers,
+  })
+    .then(() => {
+      getFreeBoardList()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+const fetchLike = (postId) => {
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+  axios({
+    method: 'post',
+    url: URL + `/free_board/${postId}/like/`,
     headers: headers,
   })
     .then(() => {

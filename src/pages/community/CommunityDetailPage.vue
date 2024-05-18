@@ -92,6 +92,7 @@ const getPostDetail = () => {
     url: URL + `/free_board/${route.params.postId}/`,
     headers: headers,
   }).then((res) => {
+    console.log(res.data)
     postData.value = res.data
   })
 }
