@@ -42,6 +42,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { SETTING } from '@/constants/settings'
 import GlobalButton from './GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit'
 
@@ -51,7 +52,7 @@ defineProps({
 
 const store = useAuthStore()
 const emit = defineEmits(['deleteComment', 'editComment'])
-const commentInput = useInputLimit(100)
+const commentInput = useInputLimit(SETTING.comment_limt)
 
 const editComment = ref({
   content: commentInput.inputValue,

@@ -64,13 +64,14 @@ import GlobalButton from '@/components/GlobalButton.vue'
 import ReviewCard from '@/components/ReviewCard.vue'
 import axios from 'axios'
 import useInputLimit from '@/hooks/useInputLimit'
+import { SETTING } from '@/constants/settings'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
 
 const store = useAuthStore()
 const route = useRoute()
-const commentInput = useInputLimit(100)
+const commentInput = useInputLimit(SETTING.comment_limt)
 
 const comment = ref({
   content: commentInput.inputValue,

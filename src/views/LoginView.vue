@@ -46,6 +46,7 @@
 
 <script setup>
 import GlobalButton from '@/components/GlobalButton.vue'
+import { FORM_ERROR_MESSAGE } from '@/constants/errorMessage'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
@@ -62,7 +63,7 @@ const router = useRouter()
 const fetchLogin = async () => {
   errorMsg.value = ''
   if (!formData.value.username || !formData.value.password) {
-    errorMsg.value = '아이디 또는 비빌번호를 입력해주세요'
+    errorMsg.value = FORM_ERROR_MESSAGE.login_empty_blank
     return
   }
 

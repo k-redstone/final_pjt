@@ -112,6 +112,7 @@
 
 <script setup>
 import GlobalButton from '@/components/GlobalButton.vue'
+import { FORM_ERROR_MESSAGE } from '@/constants/errorMessage'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
@@ -140,7 +141,7 @@ const fetchRegister = async () => {
     errorMsg.value[key] = ''
   })
   if (formData.value.isPosChecked === false || formData.value.isPrivacyChecked === false) {
-    errorMsg.value.privacy = '이용약관에 동의해주세요'
+    errorMsg.value.privacy = FORM_ERROR_MESSAGE.check_privacy
     return
   }
   try {
@@ -148,11 +149,14 @@ const fetchRegister = async () => {
     await store.getUserInfo(formData.value.username)
     router.push({ name: 'home' })
   } catch (error) {
+    console.log(error.response.data)
     Object.keys(error.response.data).forEach((key) => {
-      errorMsg.value[key] = error.response.data[key][0]
+      errorMsg.value[key] = FORM_ERROR_MESSAGE[error.response.data[key][0]]
+      // errorMsg.value[key] = error.response.data[key][0]
     })
     if (error.response.data['non_field_errors']) {
-      errorMsg.value.password2 = error.response.data['non_field_errors'][0]
+      errorMsg.value.password2 = FORM_ERROR_MESSAGE[error.response.data['non_field_errors'][0]]
+      // errorMsg.value.password2 = error.response.data['non_field_errors'][0]
     }
   }
 }
