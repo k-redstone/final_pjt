@@ -4,13 +4,24 @@
       <RouterLink :to="{ name: 'profile', params: { username: comment.user_nickname } }">
         <p>{{ comment.user_nickname }}</p>
       </RouterLink>
-      <p class="text-gray-400 grow">{{ comment.created_at }}</p>
+      <p class="text-gray-400 grow">{{ getTimeFormat(comment.created_at) }}</p>
       <div v-show="store.userInfo.id === comment.user" class="flex gap-x-4">
         <!-- <div class="flex gap-x-4"> -->
-        <span class="text-lg cursor-pointer" @click="handleIsEdit(comment.content, comment.id)"
+        <span
+          v-if="!isEdit"
+          class="text-lg cursor-pointer hover:scale-110"
+          @click="handleIsEdit(comment.content, comment.id)"
           >수정</span
         >
-        <span class="text-lg cursor-pointer" @click="handleDelete(comment.article, comment.id)"
+        <span
+          v-else
+          class="text-lg cursor-pointer hover:scale-110"
+          @click="handleIsEdit(comment.content, comment.id)"
+          >취소</span
+        >
+        <span
+          class="text-lg cursor-pointer hover:scale-110"
+          @click="handleDelete(comment.article, comment.id)"
           >삭제</span
         >
       </div>
@@ -43,6 +54,7 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { SETTING } from '@/constants/settings'
+import { getTimeFormat } from '@/utils/timeFormat'
 import GlobalButton from './GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit'
 

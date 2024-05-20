@@ -1,8 +1,8 @@
 <template>
   <div class="flex justify-center">
-    <div class="w-[102px] text-white text-base font-kbizR" @click="handleMovieSelect(movieData.id)">
+    <div class="w-[132px] text-white text-base font-kbizR" @click="handleMovieSelect(movieData.id)">
       <div
-        class="h-[153px] rounded-sm object-cover box-border"
+        class="h-[200px] rounded-sm object-cover box-border"
         :class="{ 'border-red-200 border-4': isSelect }"
       >
         <img
@@ -10,7 +10,7 @@
           alt="movie_poster"
         />
       </div>
-      <p class="pt-5 text-center">{{ movieData.title }}</p>
+      <p class="pt-2 text-center text-xs">{{ movieData.title }}</p>
     </div>
   </div>
 </template>

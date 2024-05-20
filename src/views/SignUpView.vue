@@ -13,7 +13,7 @@
               <label class="text-mint text-xl py-2" for="userId">아이디</label>
               <input
                 id="userId"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 placeholder="아이디를 입력해주세요"
                 v-model="formData.username"
               />
@@ -27,7 +27,7 @@
               <label class="text-mint text-xl py-2" for="username">닉네임</label>
               <input
                 id="username"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 placeholder="닉네임을 입력해주세요"
                 v-model="formData.nickname"
               />
@@ -41,7 +41,7 @@
               <label class="text-mint text-xl py-2" for="password">비밀번호</label>
               <input
                 id="password"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 type="password"
                 autoComplete="off"
                 placeholder="비밀번호를 입력해주세요"
@@ -57,7 +57,7 @@
               <label class="text-mint text-xl py-2" for="password_confirm">비밀번호 확인</label>
               <input
                 id="password_confirm"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 type="password"
                 autoComplete="off"
                 placeholder="비밀번호를 다시 입력해주세요"
@@ -114,7 +114,7 @@
             <div class="flex justify-center pt-2 pb-5">
               <GlobalButton
                 class="w-[395px] h-[48px] text-xl font-kbizB"
-                :type="'mint'"
+                :type="'mint-outline'"
                 :text="'Sign Up'"
               />
             </div>

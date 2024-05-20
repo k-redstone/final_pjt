@@ -13,7 +13,7 @@
               <label class="text-mint text-xl py-2" for="userId">아이디</label>
               <input
                 id="userId"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 placeholder="아이디를 입력해주세요"
                 v-model="formData.username"
               />
@@ -23,14 +23,14 @@
               <label class="text-mint text-xl py-2" for="password">비밀번호</label>
               <input
                 id="password"
-                class="w-[395px] h-[48px] pl-2 rounded-sm"
+                class="w-[395px] h-[48px] pl-2 rounded-sm text-sm"
                 type="password"
                 autoComplete="off"
                 placeholder="비밀번호를 입력해주세요"
                 v-model="formData.password"
               />
             </div>
-            <div class="flex justify-center text-red-300 font-medium text-lg my-6 w-[395px]">
+            <div class="flex justify-start text-red-300 font-medium text-sm my-6 w-[395px]">
               <p>{{ errorMsg }}</p>
             </div>
             <div class="text-white">
@@ -41,7 +41,11 @@
             </div>
             <!-- login btn -->
             <div class="flex justify-center py-5">
-              <GlobalButton class="w-[395px] h-[48px] font-kbizB" :type="'mint'" :text="'Log In'" />
+              <GlobalButton
+                class="w-[395px] h-[48px] font-kbizB"
+                :type="'mint-outline'"
+                :text="'Log In'"
+              />
             </div>
           </form>
         </div>
