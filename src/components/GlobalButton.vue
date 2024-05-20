@@ -18,6 +18,7 @@ const btnStyle = ref({
   purple: 'bg-lightPurple text-white',
   'mint-outline':
     'bg-none text-black border-mint border-2 text-mint hover:bg-mint hover:text-black',
+  'mint-outline-black': 'bg-none text-black border-mint border-2 hover:bg-mint hover:text-black',
 })
 </script>
 

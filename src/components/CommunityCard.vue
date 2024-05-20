@@ -5,16 +5,18 @@
       <RouterLink :to="{ name: 'profile', params: { username: postData.username } }">
         <span class="text-2xl font-kbizB underline">{{ postData.user_nickname }}</span>
       </RouterLink>
-      <span class="text-lg grow text-gray-400">{{ postData.created_at }}</span>
+      <span class="text-lg grow text-gray-400">{{ getTimeFormat(postData.created_at) }}</span>
       <!-- serializer수정 후 변경 -->
       <div v-show="store.userInfo.id === postData.user" class="flex gap-x-4">
         <!-- <div class="flex gap-x-4"> -->
         <RouterLink
-          class="text-lg cursor-pointer"
+          class="text-lg cursor-pointer hover:scale-110"
           :to="{ name: 'communityEdit', params: { postId: postData.id } }"
           >수정</RouterLink
         >
-        <span class="text-lg cursor-pointer" @click="deletePost(postData.id)">삭제</span>
+        <span class="text-lg cursor-pointer hover:scale-110" @click="deletePost(postData.id)"
+          >삭제</span
+        >
       </div>
     </div>
     <!-- 본문 -->
@@ -51,6 +53,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { getTimeFormat } from '@/utils/timeFormat'
+
 // 추후 백엔드 연결 후 props로 데이터 연동 예정
 defineProps({
   postData: Object,

@@ -5,7 +5,10 @@
         <h1 class="text-white text-5xl">작성한 게시물이 마음에 안들으셨나요?</h1>
       </div>
       <div class="bg-white rounded-lg p-6 text-black flex flex-col gap-y-3 overflow-y-auto">
-        <h3 class="text-2xl">게시글 수정하기</h3>
+        <div class="flex items-center">
+          <h3 class="text-2xl grow">게시글 수정하기</h3>
+          <span class="cursor-pointer hover:scale-110 mr-2" @click="cancelEdit">수정 취소</span>
+        </div>
         <form
           id="freeBoardForm"
           class="flex flex-col border p-3 border-black"
@@ -116,6 +119,10 @@ const getPostDetail = () => {
     contentInput.inputValue.value = res.data.article.content
     document.querySelector('#freeBoardContent').value = contentInput.inputValue.value
   })
+}
+
+const cancelEdit = () => {
+  router.push({ name: 'community' })
 }
 </script>
 
