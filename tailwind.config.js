@@ -31,10 +31,32 @@ export default {
           '100% ': { transform: 'translateY(40px)' },
           '0%': { transform: 'translateY(30px)' },
         },
+        bounceRight: {
+          '0%, 100%': {
+            transform: 'translateX(-55%)',
+            'animation-timing-function': 'cubic-bezier(0.8,0,1,1)',
+          },
+          '50%': {
+            transform: 'none',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+        },
+        bounceLeft: {
+          '0%, 100%': {
+            transform: 'translateX(55%)',
+            'animation-timing-function': 'cubic-bezier(0.8,0,1,1)',
+          },
+          '50%': {
+            transform: 'none',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+        },
       },
       animation: {
         slideDown: 'slideDown 0.3s linear',
         slideUp: 'slideUp 0.3s linear',
+        bounceLeft: 'bounceLeft 1.5s infinite',
+        bounceRight: 'bounceRight 1.5s infinite',
       },
       fontFamily: {
         summer: ['summer', 'sans-serif'],

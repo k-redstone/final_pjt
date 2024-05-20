@@ -22,23 +22,30 @@
               <GlobalButton :type="'mint'" :text="'추천 받기'" @click="handleRecommendBtn" />
             </div>
           </div>
-          <div class="h-[500px] mt-12">
+          <div class="h-[600px] mt-12 px-28">
             <swiper-container
-              class="h-[500px]"
+              class="h-[600px]"
               :slidesPerView="4"
               :grid="{
                 rows: 2,
               }"
               :spaceBetween="1"
-              :pagination="{
-                clickable: true,
-              }"
               :modules="[Grid, Pagination]"
             >
               <swiper-slide v-for="movie in store.moodMovieList" :key="movie.id">
                 <MovieCard :movieData="movie" />
               </swiper-slide>
             </swiper-container>
+            <span
+              class="absolute animate-bounceLeft top-1/2 left-0 text-white material-symbols-outlined text-[70px]"
+            >
+              keyboard_double_arrow_left
+            </span>
+            <span
+              class="absolute animate-bounceRight top-1/2 right-0 text-white material-symbols-outlined text-[70px]"
+            >
+              keyboard_double_arrow_right
+            </span>
           </div>
         </div>
       </main>
