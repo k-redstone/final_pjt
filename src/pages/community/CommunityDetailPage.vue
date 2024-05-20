@@ -7,7 +7,7 @@
       <div class="bg-white rounded-lg px-5 pt-7 pb-3 my-6 font-kbizR">
         <!-- 유지명 및 기능 -->
         <div class="flex items-center gap-x-4">
-          <span class="text-2xl font-kbizB">{{ postData.article?.userId }}</span>
+          <span class="text-2xl font-kbizB">{{ postData.article?.user_nickname }}</span>
           <span class="text-lg grow text-gray-400">{{ postData.article?.created_at }}</span>
           <span class="text-lg">수정</span>
           <span class="text-lg">삭제</span>

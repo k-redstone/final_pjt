@@ -10,7 +10,10 @@
         <span>|</span>
         <span>팔로잉 {{ following.length }}</span>
         <!-- 자기 자신페이지는 안보이게 하기-->
-        <div v-show="true" class="flex gap-x-4 items-center">
+        <div
+          v-show="route.params.username != store.userInfo.username"
+          class="flex gap-x-4 items-center"
+        >
           <div
             v-show="!isFollow"
             class="w-[70px] h-[30px] border-mint border-2 text-sm rounded-md flex justify-center items-center cursor-pointer hover:scale-110"

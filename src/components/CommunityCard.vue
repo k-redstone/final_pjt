@@ -2,13 +2,13 @@
   <div class="w-[1100px] bg-white rounded-lg px-5 pt-7 pb-3 my-6 font-kbizR">
     <!-- 유지명 및 기능 -->
     <div class="flex items-center gap-x-4">
-      <RouterLink :to="{ name: 'profile', params: { username: '유저이름' } }">
-        <span class="text-2xl font-kbizB underline">{{ postData.userId }}</span>
+      <RouterLink :to="{ name: 'profile', params: { username: postData.username } }">
+        <span class="text-2xl font-kbizB underline">{{ postData.user_nickname }}</span>
       </RouterLink>
       <span class="text-lg grow text-gray-400">{{ postData.created_at }}</span>
       <!-- serializer수정 후 변경 -->
-      <!-- <div v-show="store.userInfo.id === postData.userId" class="flex gap-x-4"> -->
-      <div class="flex gap-x-4">
+      <div v-show="store.userInfo.id === postData.user" class="flex gap-x-4">
+        <!-- <div class="flex gap-x-4"> -->
         <RouterLink
           class="text-lg cursor-pointer"
           :to="{ name: 'communityEdit', params: { postId: postData.id } }"
@@ -34,7 +34,7 @@
         <span
           class="material-symbols-outlined"
           :class="{
-            'text-red-300': postData.like_user.includes(6),
+            'text-red-300': postData.like_user.includes(store.userInfo.id),
           }"
         >
           thumb_up
@@ -42,7 +42,7 @@
         <span>{{ postData.like_user.length }}</span>
       </div>
       <RouterLink :to="{ name: 'communityDetail', params: { postId: postData.id } }">
-        <span class="underline">댓글 3개</span>
+        <span class="underline">댓글 {{ postData.comments_cnt }}개</span>
       </RouterLink>
     </div>
   </div>
