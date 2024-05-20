@@ -28,6 +28,8 @@ import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref, onMounted } from 'vue'
 
+// import { fetchFreeBoardList } from '@/utils/postAxios'
+
 const store = useAuthStore()
 
 const postList = ref([])
@@ -36,7 +38,12 @@ onMounted(() => {
   getFreeBoardList()
 })
 
-const getFreeBoardList = () => {
+const getFreeBoardList = async () => {
+  // try {
+  //   const res = await fetchFreeBoardList(store.token)
+  // } catch (error) {
+  //   console.error(error)
+  // }
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,

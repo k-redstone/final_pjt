@@ -14,6 +14,7 @@ import MovieDetailPage from '@/pages/movie/MovieDetailPage.vue'
 import MainLayout from '@/layout/MainLayout.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import LandingView from '@/views/LandingView.vue'
+import ForbiddenView from '@/views/ForbiddenView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
           path: '',
           name: 'landing',
           component: LandingView,
+        },
+        {
+          path: '404',
+          name: '404',
+          component: ForbiddenView,
         },
         {
           path: '/login',
