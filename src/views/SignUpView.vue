@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="flex justify-center mt-12 pt-[100px]">
+    <div class="flex justify-center pt-[100px] mb-20">
       <div class="bg-gray w-[525px] px-4 py-2 rounded-lg">
         <div class="flex flex-col items-center">
           <!-- title -->
-          <div class="my-10">
+          <div class="mt-10 mb-5">
             <p class="font-summer text-5xl text-mint">Sign Up</p>
           </div>
           <form class="font-kbizR" @submit.prevent="fetchRegister">
             <!-- username form -->
             <div class="mb-1 flex flex-col justify-between">
-              <label class="text-mint text-2xl py-2" for="userId">아이디</label>
+              <label class="text-mint text-xl py-2" for="userId">아이디</label>
               <input
                 id="userId"
                 class="w-[395px] h-[48px] pl-2 rounded-sm"
@@ -24,7 +24,7 @@
             </div>
             <!-- nickname form -->
             <div class="mb-1 flex flex-col justify-between">
-              <label class="text-mint text-2xl py-2" for="username">닉네임</label>
+              <label class="text-mint text-xl py-2" for="username">닉네임</label>
               <input
                 id="username"
                 class="w-[395px] h-[48px] pl-2 rounded-sm"
@@ -38,7 +38,7 @@
             </div>
             <!-- password form -->
             <div class="flex flex-col justify-between">
-              <label class="text-mint text-2xl py-2" for="password">비밀번호</label>
+              <label class="text-mint text-xl py-2" for="password">비밀번호</label>
               <input
                 id="password"
                 class="w-[395px] h-[48px] pl-2 rounded-sm"
@@ -54,7 +54,7 @@
             </div>
             <!-- confirm_password form -->
             <div class="flex flex-col justify-between">
-              <label class="text-mint text-2xl py-2" for="password_confirm">비밀번호 확인</label>
+              <label class="text-mint text-xl py-2" for="password_confirm">비밀번호 확인</label>
               <input
                 id="password_confirm"
                 class="w-[395px] h-[48px] pl-2 rounded-sm"
@@ -74,7 +74,12 @@
                 <input type="checkbox" id="tos" value="tos" v-model="formData.isPosChecked" />
                 <label class="text-white text-base ml-2" for="tos"
                   >이용약관 동의(필수)
-                  <span class="underline underline-offset-2 text-sm">자세히</span>
+                  <a
+                    href="https://accurate-dryer-393.notion.site/b290a395cfb341a7a7740358afd76872?pvs=4"
+                    target="_blank"
+                  >
+                    <span class="underline underline-offset-2 text-sm">자세히</span>
+                  </a>
                 </label>
               </div>
               <div>
@@ -86,7 +91,12 @@
                 />
                 <label class="text-white text-base ml-2" for="privacy"
                   >개인정보 수집 및 이용동의(필수)
-                  <span class="underline underline-offset-2 text-sm">자세히</span>
+                  <a
+                    href="https://accurate-dryer-393.notion.site/600ee87e489c4f5e8944fc557cfe4754?pvs=4"
+                    target="_blank"
+                  >
+                    <span class="underline underline-offset-2 text-sm">자세히</span>
+                  </a>
                 </label>
               </div>
               <!-- error MSG -->
@@ -94,9 +104,14 @@
                 <p>{{ errorMsg.privacy }}</p>
               </div>
             </div>
-
-            <!-- login btn -->
-            <div class="flex justify-center py-5">
+            <div class="text-white mt-3">
+              <p>
+                이미 회원이신가요?
+                <RouterLink :to="{ name: 'login' }" class="underline">로그인</RouterLink>
+              </p>
+            </div>
+            <!-- sign btn -->
+            <div class="flex justify-center pt-2 pb-5">
               <GlobalButton
                 class="w-[395px] h-[48px] text-xl font-kbizB"
                 :type="'mint'"
