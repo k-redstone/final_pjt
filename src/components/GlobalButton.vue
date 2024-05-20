@@ -7,7 +7,6 @@
 <script setup>
 import { ref } from 'vue'
 
-ref
 defineProps({
   type: String,
   text: String,
@@ -17,6 +16,8 @@ const btnStyle = ref({
   mint: 'bg-mint text-black',
   white: 'bg-white text-black',
   purple: 'bg-lightPurple text-white',
+  'mint-outline':
+    'bg-none text-black border-mint border-2 text-mint hover:bg-mint hover:text-black',
 })
 </script>
 
