@@ -1,11 +1,12 @@
 <template>
   <div class="flex flex-col gap-y-2">
     <div class="flex items-center gap-x-3">
-      <RouterLink :to="{ name: 'profile', params: { username: comment.userId } }">
-        <p>{{ comment.userId }}</p>
+      <RouterLink :to="{ name: 'profile', params: { username: comment.user_nickname } }">
+        <p>{{ comment.user_nickname }}</p>
       </RouterLink>
       <p class="text-gray-400 grow">{{ comment.created_at }}</p>
-      <div class="flex gap-x-4">
+      <div v-show="store.userInfo.id === comment.user" class="flex gap-x-4">
+        <!-- <div class="flex gap-x-4"> -->
         <span class="text-lg cursor-pointer" @click="handleIsEdit(comment.content, comment.id)"
           >수정</span
         >
@@ -40,14 +41,18 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { SETTING } from '@/constants/settings'
 import GlobalButton from './GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit'
 
 defineProps({
   comment: Object,
 })
+
+const store = useAuthStore()
 const emit = defineEmits(['deleteComment', 'editComment'])
-const commentInput = useInputLimit(100)
+const commentInput = useInputLimit(SETTING.comment_limt)
 
 const editComment = ref({
   content: commentInput.inputValue,

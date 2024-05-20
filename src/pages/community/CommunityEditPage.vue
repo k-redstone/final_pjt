@@ -55,6 +55,7 @@
 import GlobalButton from '@/components/GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit.js'
 import axios from 'axios'
+import { SETTING } from '@/constants/settings'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter, useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
@@ -63,8 +64,8 @@ const store = useAuthStore()
 const router = useRouter()
 const route = useRoute()
 
-const titleInput = useInputLimit(50)
-const contentInput = useInputLimit(200)
+const titleInput = useInputLimit(SETTING.post_title_limit)
+const contentInput = useInputLimit(SETTING.post_content_limit)
 
 const formData = ref({
   title: titleInput.inputValue,
