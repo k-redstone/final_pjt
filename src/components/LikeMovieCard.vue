@@ -2,7 +2,7 @@
   <div class="flex justify-center">
     <div class="w-[200px] text-white text-base font-kbizR">
       <div
-        class="h-[301px] rounded-sm object-cover cursor-pointer"
+        class="h-[301px] rounded-sm object-cover cursor-pointer flex flex-col justify-end"
         @click="moveDetailPage(movieData.db_movie_id)"
       >
         <img
@@ -10,7 +10,7 @@
           alt="movie_poster"
         />
       </div>
-      <div class="mt-3 flex items-center">
+      <div class="flex mt-3 items-center">
         <p class="grow text-sm font-kbizB">{{ movieData.title }}</p>
         <!-- <span
           class="material-symbols-outlined text-3xl ml-3 cursor-pointer"

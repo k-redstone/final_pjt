@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-y-2">
     <div class="flex items-center gap-x-3">
-      <RouterLink :to="{ name: 'profile', params: { username: comment.user_nickname } }">
+      <RouterLink :to="{ name: 'profile', params: { username: comment.username } }">
         <p>{{ comment.user_nickname }}</p>
       </RouterLink>
       <p class="text-gray-400 grow">{{ getTimeFormat(comment.created_at) }}</p>

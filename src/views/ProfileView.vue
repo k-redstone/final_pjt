@@ -35,11 +35,7 @@
         </div>
       </div>
       <div class="mt-10 grid grid-cols-4 gap-x-10 gap-y-20 mb-20">
-        <LikeMovieCard :movieData="movieData" />
-        <LikeMovieCard :movieData="movieData" />
-        <LikeMovieCard :movieData="movieData" />
-        <LikeMovieCard :movieData="movieData" />
-        <LikeMovieCard :movieData="movieData" />
+        <LikeMovieCard v-for="movie in movieData" :movieData="movie" :key="movie.db_movie_id" />
       </div>
     </main>
   </div>
@@ -68,19 +64,20 @@ onMounted(() => {
 })
 
 const getUserMovieList = () => {
-  const URL = 'https://api.themoviedb.org/3/movie/200'
-  const params = {
-    language: 'ko-KR',
-    api_key: import.meta.env.VITE_TMDB_API_KEY,
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
   }
-  axios
-    .get(URL, { params: params })
+  axios({
+    method: 'get',
+    url: URL + `/accounts/${route.params.username}/like_movie/`,
+    headers: headers,
+  })
     .then((res) => {
-      console.log(res)
       movieData.value = res.data
+      console.log(res.data)
     })
     .catch((error) => {
-      console.error(error)
       if (error.response.status === 404) {
         router.push({ name: '404' })
       }
