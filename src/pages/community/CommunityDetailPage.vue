@@ -126,7 +126,8 @@ const submitComment = (postId) => {
     })
 }
 
-const deleteComment = (postId, commentId) => {
+const deleteComment = (commentId) => {
+  // console.log(postData.value.article.id)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -134,7 +135,7 @@ const deleteComment = (postId, commentId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
   })
     .then(() => {
@@ -144,15 +145,14 @@ const deleteComment = (postId, commentId) => {
       console.error(error)
     })
 }
-const editComment = (postId, commentId, formData) => {
-  console.log(formData)
+const editComment = (commentId, formData) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
   }
   axios({
     method: 'put',
-    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
     data: formData,
   })

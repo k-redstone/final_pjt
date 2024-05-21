@@ -19,9 +19,7 @@
           @click="handleIsEdit(comment.content, comment.id)"
           >취소</span
         >
-        <span
-          class="text-lg cursor-pointer hover:scale-110"
-          @click="handleDelete(comment.article, comment.id)"
+        <span class="text-lg cursor-pointer hover:scale-110" @click="handleDelete(comment.id)"
           >삭제</span
         >
       </div>
@@ -30,7 +28,7 @@
       <form
         id="commentForm"
         class="border p-3 border-black"
-        @submit.prevent="handleEdit(comment.article, comment.id)"
+        @submit.prevent="handleEdit(comment.id)"
       >
         <textarea
           :id="'comment_' + comment.id"
@@ -71,11 +69,12 @@ const editComment = ref({
 })
 const isEdit = ref(false)
 
-const handleDelete = (postId, commentId) => {
-  emit('deleteComment', postId, commentId)
+const handleDelete = (commentId) => {
+  emit('deleteComment', commentId)
 }
-const handleEdit = (postId, commentId) => {
-  emit('editComment', postId, commentId, editComment.value)
+const handleEdit = (commentId) => {
+  console.log(commentId)
+  emit('editComment', commentId, editComment.value)
   isEdit.value = false
   editComment.value.content = ''
 }

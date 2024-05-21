@@ -48,12 +48,13 @@
 <script setup>
 import LikeMovieCard from '@/components/LikeMovieCard.vue'
 import { ref, onMounted, computed } from 'vue'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import axios from 'axios'
 
 const store = useAuthStore()
 const route = useRoute()
+const router = useRouter()
 
 const movieData = ref('')
 const following = ref([])
@@ -80,6 +81,9 @@ const getUserMovieList = () => {
     })
     .catch((error) => {
       console.error(error)
+      if (error.response.status === 404) {
+        router.push({ name: '404' })
+      }
     })
 }
 

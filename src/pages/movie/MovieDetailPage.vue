@@ -10,7 +10,7 @@
         <div class="flex mt-10 bg-gray px-10 py-8 rounded-xl">
           <div class="w-[350px] flex-shrink-0 mr-4">
             <img
-              :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
+              :src="'https://image.tmdb.org/t/p/original' + movieData.poster_path"
               alt="movie_poster"
             />
           </div>
@@ -76,7 +76,7 @@
           <form
             id="reviewForm"
             class="border p-3 border-black"
-            @submit.prevent="submitReview(movieData.id)"
+            @submit.prevent="submitReview(movieData.db_movie_id)"
           >
             <p>{{ store.userInfo.nickname }}</p>
             <textarea
@@ -93,7 +93,12 @@
           </form>
           <div>
             <div v-for="review in reviewData" :key="review.id">
-              <ReviewCard class="py-5" :comment="review" />
+              <ReviewCard
+                class="py-5"
+                :comment="review"
+                @delete-comment="deleteComment"
+                @edit-comment="editComment"
+              />
               <hr />
             </div>
           </div>
@@ -113,6 +118,7 @@ import { SETTING } from '@/constants/settings'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute } from 'vue-router'
 import { ref, watch, onMounted } from 'vue'
+import router from '@/router'
 
 const props = defineProps({
   movieId: Number,
@@ -137,17 +143,9 @@ onMounted(() => {
 watch(
   () => movieData.value,
   () => {
-    // console.log('watch')
-    // console.log(movieData.value.like_user)
     isLikeMovie.value = movieData.value.like_user.some((user) => user['id'] === store.userInfo.id)
   },
 )
-
-// const isLikeMovie = computed(() => {
-//   return movieData?.value.like_user.find((movie) => {
-//     movie['like_user'] === store.userInfo.id
-//   })
-// })
 
 const getMovieDetail = () => {
   const URL = import.meta.env.VITE_BACKEND_URL
@@ -164,7 +162,9 @@ const getMovieDetail = () => {
       movieData.value = res.data
     })
     .catch((error) => {
-      console.error(error)
+      if (error.response.status === 404) {
+        router.push({ name: '404' })
+      }
     })
 }
 const getMovieReview = () => {
@@ -178,6 +178,8 @@ const getMovieReview = () => {
     headers: headers,
   })
     .then((res) => {
+      console.log('getReview')
+      console.log(res.data)
       reviewData.value = res.data
     })
     .catch((error) => {
@@ -186,6 +188,7 @@ const getMovieReview = () => {
 }
 
 const submitReview = (movieId) => {
+  console.log(movieId)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -203,6 +206,45 @@ const submitReview = (movieId) => {
     })
     .catch((error) => {
       console.log(error)
+    })
+}
+
+const deleteComment = (commentId) => {
+  // console.log(postData.value.article.id)
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+
+  axios({
+    method: 'delete',
+    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    headers: headers,
+  })
+    .then(() => {
+      getMovieReview()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+const editComment = (commentId, formData) => {
+  console.log(movieData.value)
+  const URL = import.meta.env.VITE_BACKEND_URL
+  const headers = {
+    Authorization: `Token ${store.token}`,
+  }
+  axios({
+    method: 'put',
+    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    headers: headers,
+    data: formData,
+  })
+    .then(() => {
+      getMovieReview()
+    })
+    .catch((error) => {
+      console.error(error)
     })
 }
 
