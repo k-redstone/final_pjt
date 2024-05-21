@@ -15,6 +15,7 @@ import MainLayout from '@/layout/MainLayout.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import LandingView from '@/views/LandingView.vue'
 import ForbiddenView from '@/views/ForbiddenView.vue'
+import RecommendPage from '@/pages/mood/RecommendPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,7 +58,7 @@ const router = createRouter({
         {
           path: 'recommend',
           name: 'recommend',
-          component: SimlarMovieView,
+          component: RecommendPage,
         },
         {
           path: 'profile/:username',
