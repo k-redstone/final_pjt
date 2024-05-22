@@ -1,6 +1,9 @@
 <template>
   <div class="flex justify-center">
-    <div class="w-[132px] text-white text-base font-kbizR" @click="handleMovieSelect(movieData.id)">
+    <div
+      class="w-[132px] text-white text-base font-kbizR"
+      @click="handleMovieSelect(movieData.title)"
+    >
       <div
         class="h-[200px] rounded-sm object-cover box-border"
         :class="{ 'border-red-200 border-4': isSelect }"

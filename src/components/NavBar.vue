@@ -17,6 +17,9 @@
           <RouterLink :to="{ name: 'community' }">
             <li>Community</li>
           </RouterLink>
+          <RouterLink :to="{ name: 'recommend' }">
+            <li>Recommend</li>
+          </RouterLink>
         </ul>
       </div>
       <div v-show="store.token" class="flex flex-col items-center text-white float-left">

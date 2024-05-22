@@ -1,7 +1,8 @@
 <template>
-  <div class="flex flex-col">
-    <div>
-      <swiper-container
+  <!-- <div class="flex flex-col bg-gray"> -->
+  <div>
+    <MainPage />
+    <!-- <swiper-container
         v-show="isLogin"
         :hashNavigation="{
           watchState: true,
@@ -33,46 +34,44 @@
             <SelectMoviePage />
           </WrapLayout>
         </swiper-slide>
-      </swiper-container>
-    </div>
+      </swiper-container> -->
   </div>
+  <!-- </div> -->
 </template>
 
 <script setup>
-import { register } from 'swiper/element/bundle'
-import { ref, onMounted } from 'vue'
-import { Mousewheel, Pagination, Navigation } from 'swiper/modules'
+// import { register } from 'swiper/element/bundle'
+// import { ref, onMounted } from 'vue'
+// import { Mousewheel, Pagination, Navigation } from 'swiper/modules'
 import MainPage from '@/pages/mood/MainPage.vue'
-import SelectMoodPage from '@/pages/mood/SelectMoodPage.vue'
-import SelectMoviePage from '@/pages/mood/SelectMoviePage.vue'
-import WrapLayout from '@/layout/WrapLayout.vue'
+// import SelectMoodPage from '@/pages/mood/SelectMoodPage.vue'
+// import SelectMoviePage from '@/pages/mood/SelectMoviePage.vue'
+// import WrapLayout from '@/layout/WrapLayout.vue'
 
-register()
+// register()
 
-const isLogin = ref(true)
+// onMounted(() => {
+//   const swiperEl = document.querySelector('swiper-container')
+//   console.log(swiperEl)
+//   const params = {
+//     injectStyles: [
+//       `
+//       .swiper-pagination-bullet {
+//         width:24px;
+//         height:24px;
+//         background: #FFFFFF;
+//       }
+//       .swiper-pagination-bullet-active {
+//         background: #60F2BE;
+//       }
+//       `,
+//     ],
+//   }
+//   console.log(params)
+//   Object.assign(swiperEl, params)
 
-onMounted(() => {
-  const swiperEl = document.querySelector('swiper-container')
-  console.log(swiperEl)
-  const params = {
-    injectStyles: [
-      `
-      .swiper-pagination-bullet {
-        width:24px;
-        height:24px;
-        background: #FFFFFF;
-      }
-      .swiper-pagination-bullet-active {
-        background: #60F2BE;
-      }
-      `,
-    ],
-  }
-  console.log(params)
-  Object.assign(swiperEl, params)
-
-  swiperEl.initialize()
-})
+//   swiperEl.initialize()
+// })
 </script>
 
 <style scoped></style>
