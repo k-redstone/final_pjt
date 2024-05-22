@@ -6,7 +6,7 @@
         <ul class="flex text-2xl text-white items-end gap-x-5">
           <RouterLink :to="{ name: 'landing' }">
             <li class="mr-3">
-              <div class="relative w-[82px] h-[50px]">
+              <div class="relative w-[100px] h-[50px]">
                 <img class="absolute w-full h-full" src="@/assets/img/logo.png" alt="logo_img" />
               </div>
             </li>
