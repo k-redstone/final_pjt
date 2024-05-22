@@ -73,11 +73,12 @@ import useInputLimit from '@/hooks/useInputLimit'
 import { getTimeFormat } from '@/utils/timeFormat'
 import { SETTING } from '@/constants/settings'
 import { useAuthStore } from '@/stores/auth'
-import { useRoute, RouterLink } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { ref, onMounted } from 'vue'
 
 const store = useAuthStore()
 const route = useRoute()
+const router = useRouter()
 const commentInput = useInputLimit(SETTING.comment_limt)
 
 const comment = ref({
@@ -99,10 +100,16 @@ const getPostDetail = () => {
     method: 'get',
     url: URL + `/free_board/${route.params.postId}/`,
     headers: headers,
-  }).then((res) => {
-    console.log(res.data)
-    postData.value = res.data
   })
+    .then((res) => {
+      console.log(res.data)
+      postData.value = res.data
+    })
+    .catch((error) => {
+      if (error.response.status === 404) {
+        router.push({ name: '404' })
+      }
+    })
 }
 
 const submitComment = (postId) => {
@@ -126,7 +133,8 @@ const submitComment = (postId) => {
     })
 }
 
-const deleteComment = (postId, commentId) => {
+const deleteComment = (commentId) => {
+  // console.log(postData.value.article.id)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -134,7 +142,7 @@ const deleteComment = (postId, commentId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
   })
     .then(() => {
@@ -144,15 +152,14 @@ const deleteComment = (postId, commentId) => {
       console.error(error)
     })
 }
-const editComment = (postId, commentId, formData) => {
-  console.log(formData)
+const editComment = (commentId, formData) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
   }
   axios({
     method: 'put',
-    url: URL + `/free_board/${postId}/comment/${commentId}/`,
+    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
     data: formData,
   })

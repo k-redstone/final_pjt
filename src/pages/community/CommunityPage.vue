@@ -24,14 +24,14 @@
 import CommunityCard from '@/components/CommunityCard.vue'
 import GlobalButton from '@/components/GlobalButton.vue'
 import axios from 'axios'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref, onMounted } from 'vue'
 
 // import { fetchFreeBoardList } from '@/utils/postAxios'
 
 const store = useAuthStore()
-
+const router = useRouter()
 const postList = ref([])
 
 onMounted(() => {
@@ -39,11 +39,6 @@ onMounted(() => {
 })
 
 const getFreeBoardList = async () => {
-  // try {
-  //   const res = await fetchFreeBoardList(store.token)
-  // } catch (error) {
-  //   console.error(error)
-  // }
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -53,10 +48,14 @@ const getFreeBoardList = async () => {
     method: 'get',
     url: URL + '/free_board/',
     headers: headers,
-  }).then((res) => {
-    postList.value = res.data
-    console.log(res)
   })
+    .then((res) => {
+      postList.value = res.data
+      console.log(res)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
 const deletepost = (postId) => {

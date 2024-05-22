@@ -113,12 +113,18 @@ const getPostDetail = () => {
     method: 'get',
     url: URL + `/free_board/${route.params.postId}/`,
     headers: headers,
-  }).then((res) => {
-    titleInput.inputValue.value = res.data.article.title
-    document.querySelector('#freeBoardTitle').value = titleInput.inputValue.value
-    contentInput.inputValue.value = res.data.article.content
-    document.querySelector('#freeBoardContent').value = contentInput.inputValue.value
   })
+    .then((res) => {
+      titleInput.inputValue.value = res.data.article.title
+      document.querySelector('#freeBoardTitle').value = titleInput.inputValue.value
+      contentInput.inputValue.value = res.data.article.content
+      document.querySelector('#freeBoardContent').value = contentInput.inputValue.value
+    })
+    .catch((error) => {
+      if (error.response.status === 404) {
+        router.push({ name: '404' })
+      }
+    })
 }
 
 const cancelEdit = () => {
