@@ -23,6 +23,29 @@
   src: url('/fonts/KBIZ_R.ttf');
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
+}
+
+#gptBox::-webkit-scrollbar {
+  /* position: absolute; */
+  width: 8px;
+}
+
+#gptBox::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+
+  border-radius: 10px;
+}
+#movieBox::-webkit-scrollbar {
+  /* position: absolute; */
+  width: 8px;
+}
+
+#movieBox::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+
+  border-radius: 10px;
 }
