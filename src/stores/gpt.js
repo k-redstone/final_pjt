@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { SETTING } from '@/constants/settings'
 
-import { useMovieRecommendStore } from './movieRecommend'
+import { useMovieRecommendStore } from '@/stores/movieRecommend'
 
 export const useGptStore = defineStore('gpt', () => {
   const chat = ref(null)
@@ -120,6 +120,34 @@ export const useGptStore = defineStore('gpt', () => {
     return JSON.parse(response.choices[0].message['content'].trim())
   }
 
+  const resetValue = () => {
+    chatList.value = []
+    chat.value = null
+    isSelectMood.value = false
+    isShowMovie.value = false
+    isLoading.value = false
+    gptMessageList.value = [
+      { role: 'system', content: 'You are an expert in recommending movies and Korean.' },
+      { role: 'user', content: '앞으로 답변은 한국어로 해줘' },
+      {
+        role: 'user',
+        content:
+          '사용자가 입력한 감정을 해소할 수 있는 장르를 3개 추천해줘. (추천 장르는 보여주지 않아도 괜찮아)',
+      },
+      {
+        role: 'user',
+        content:
+          '앞에서 추천해준 장르별로 영화를 3개씩 추천해주고, 중복되지 않는 추가 추천 영화도 3개 추천해줘.',
+      },
+      { role: 'user', content: '12개의 영화를 영화 제목만 리스트에 담아줘.' },
+      {
+        role: 'user',
+        content:
+          '추천된 영화를 하나의 json 형식 만들어줘. 예시는 {movies: 추천된 영화로 이루어진 리스트]',
+      },
+    ]
+  }
+
   return {
     chatList,
     isLoading,
@@ -130,5 +158,6 @@ export const useGptStore = defineStore('gpt', () => {
     setUserMood,
     fetchGptMood,
     fetchGptMovie,
+    resetValue,
   }
 })

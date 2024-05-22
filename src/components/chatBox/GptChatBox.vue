@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-start text-white text-base">
-    <p>GPT</p>
+    <p>Mood Movie</p>
     <div
       class="w-[303px] min-h-[48px] bg-[#232636] py-3 px-5 rounded-xl flex items-center box-border whitespace-pre-wrap"
     >

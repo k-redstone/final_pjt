@@ -11,6 +11,7 @@
             >
               <div class="py-5 pl-4 pr-2 flex flex-col gap-y-3">
                 <div class="w-full text-white">
+                  <p>Mood Movie</p>
                   <div
                     class="w-[303px] h-[90px] bg-[#232636] py-1 px-5 flex flex-col justify-around rounded-xl"
                   >
@@ -72,7 +73,7 @@
           <div class="grow py-5 px-3">
             <template v-if="gptStore.isShowMovie">
               <div class="h-full relative flex flex-col">
-                <div v-show="!isSelectRecommend" class="text-white flex items-center mb-5">
+                <div v-if="!isSelectRecommend" class="text-white flex items-center mb-5">
                   <p class="grow text-red-200 text-lg">{{ errorMsg }}</p>
                   <div>
                     <GlobalButton
@@ -85,6 +86,16 @@
                       :type="'mint-outline'"
                       :text="'다 골랐어요'"
                       @click="handleRecommendBtn"
+                    />
+                  </div>
+                </div>
+                <div v-else class="flex items-center justify-end mb-5">
+                  <div>
+                    <GlobalButton
+                      class="mr-5"
+                      :type="'white'"
+                      :text="'다시 추천받기'"
+                      @click="handleReroll"
                     />
                   </div>
                 </div>
@@ -103,7 +114,11 @@
             <template v-else>
               <div class="flex items-center justify-center h-full w-full">
                 <div class="w-[200px]">
-                  <img class="w-full -translate-y-20" src="@/assets/img/logo.png" alt="logo_img" />
+                  <img
+                    class="w-full -translate-y-20 animate-pulse"
+                    src="@/assets/img/logo.png"
+                    alt="logo_img"
+                  />
                 </div>
               </div>
             </template>
@@ -120,6 +135,7 @@ import UserChatBox from '@/components/chatBox/UserChatBox.vue'
 import MovieCard from '@/components/MovieCard.vue'
 import { useGptStore } from '@/stores/gpt'
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
+import { onBeforeRouteLeave } from 'vue-router'
 import { ref, watch } from 'vue'
 import GlobalButton from '@/components/GlobalButton.vue'
 
@@ -129,6 +145,11 @@ const movieStore = useMovieRecommendStore()
 const isSelectRecommend = ref(false)
 const errorMsg = ref('')
 const selectedMood = ref('')
+
+onBeforeRouteLeave(() => {
+  gptStore.resetValue()
+  movieStore.resetValue()
+})
 
 const handleSelect = (mood) => {
   selectedMood.value = mood
@@ -147,6 +168,14 @@ const handleRecommendBtn = () => {
   }
   isSelectRecommend.value = true
   gptStore.setUserSelectMovie(movieStore.moodMovieSelectList)
+}
+
+const handleReroll = () => {
+  gptStore.resetValue()
+  movieStore.resetValue()
+  isSelectRecommend.value = false
+  errorMsg.value = ''
+  selectedMood.value = ''
 }
 
 watch(

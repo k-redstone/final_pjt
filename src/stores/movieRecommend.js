@@ -5,7 +5,6 @@ import { ref, computed } from 'vue'
 export const useMovieRecommendStore = defineStore('movieRecommend', () => {
   const moodMovieList = ref([])
   const moodMovieSelectList = ref(new Set())
-  const similarMovieList = ref([])
 
   const moodMovieSelectCount = computed(() => {
     return moodMovieSelectList.value.size
@@ -26,12 +25,17 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
   const clearMoodMovieSelctList = () => {
     moodMovieSelectList.value = new Set()
   }
+
+  const resetValue = () => {
+    moodMovieList.value = []
+    clearMoodMovieSelctList()
+  }
   return {
-    similarMovieList,
     moodMovieSelectCount,
     moodMovieSelectList,
     moodMovieList,
     fetchMoodMovie,
     clearMoodMovieSelctList,
+    resetValue,
   }
 })
