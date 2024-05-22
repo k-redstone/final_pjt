@@ -11,15 +11,20 @@ export default {
         'community-img': "url('@/assets/img/background/computer_person.png')",
         'screen-image': "url('/images/screenshot.png')",
         'logo-img': "url('@/assets/img/logo.png')",
+        'no-img': "url('@/assets/img/no_image.png')",
       },
 
       backgroundColor: {
         opacityGray: 'rgba(45,45,45,0.55)',
         gray: 'rgba(45,45,45)',
         lightPurple: '#A060F2',
+        darkIndigo: '#232636',
+        lightSky: '#68A9E4',
       },
       colors: {
         mint: '#60F2BE',
+        darkIndigo: '#232636',
+        lightSky: '#68A9E4',
       },
 
       keyframes: {

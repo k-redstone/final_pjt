@@ -14,7 +14,7 @@
               alt="movie_poster"
             />
           </div>
-          <div class="flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
+          <div class="grow flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
             <div class="w-full">
               <div class="flex items-center gap-x-3 pb-2">
                 <span class="text-[#ffdd57] text-4xl">{{ movieData.title }}</span>

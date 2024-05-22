@@ -6,7 +6,7 @@
     >
       <div
         class="h-[200px] rounded-sm object-cover box-border"
-        :class="{ 'border-red-200 border-4': isSelect }"
+        :class="{ 'border-lightSky border-4': isSelect }"
       >
         <img
           :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
