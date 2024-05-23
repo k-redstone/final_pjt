@@ -7,7 +7,12 @@
           <RouterLink :to="{ name: 'landing' }">
             <li class="mr-3">
               <div class="relative w-[100px] h-[50px]">
-                <img class="absolute w-full h-full" src="@/assets/img/logo.png" alt="logo_img" />
+                <img
+                  class="absolute w-full h-full"
+                  src="@/assets/img/logo.png"
+                  alt="logo_img"
+                  @error="handleImg"
+                />
               </div>
             </li>
           </RouterLink>
@@ -46,6 +51,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import { useRouter, RouterLink } from 'vue-router'
 
 import { useAuthStore } from '@/stores/auth'
@@ -60,6 +66,9 @@ const handleBoxOpen = () => {
   isBoxOpen.value = !isBoxOpen.value
 }
 
+const handleImg = (event) => {
+  event.target.src = img
+}
 const handleLogout = async () => {
   try {
     await store.userLogout()

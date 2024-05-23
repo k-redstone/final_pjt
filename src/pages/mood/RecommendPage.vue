@@ -131,6 +131,7 @@
                     class="w-full -translate-y-20 animate-pulse"
                     src="@/assets/img/logo.png"
                     alt="logo_img"
+                    @error="handleImg"
                   />
                 </div>
               </div>
@@ -143,6 +144,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import GptChatBox from '@/components/chatBox/GptChatBox.vue'
 import UserChatBox from '@/components/chatBox/UserChatBox.vue'
 import MovieCard from '@/components/MovieCard.vue'
@@ -165,6 +167,9 @@ onBeforeRouteLeave(() => {
   movieStore.resetValue()
 })
 
+const handleImg = (event) => {
+  event.target.src = img
+}
 const handleSelect = (mood) => {
   selectedMood.value = mood
 }

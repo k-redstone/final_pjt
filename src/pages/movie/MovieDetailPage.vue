@@ -12,6 +12,7 @@
             <img
               :src="'https://image.tmdb.org/t/p/original' + movieData.poster_path"
               alt="movie_poster"
+              @error="handleImg"
             />
           </div>
           <div class="grow flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
@@ -29,7 +30,6 @@
               </div>
               <div class="flex items-center gap-x-4">
                 <span>{{ movieData.release_date }}</span>
-                <!-- <span>{{ movieData.runtime }}분</span> -->
                 <span>{{ movieData.vote_average }}점</span>
               </div>
             </div>
@@ -44,16 +44,6 @@
               <span>{{ movieData.overview }}</span>
             </div>
             <div class="flex flex-col gap-y-1">
-              <!-- <div class="flex items-center gap-x-3 cursor-pointer">
-                <span>좋아요</span>
-                <span
-                  class="material-symbols-outlined text-3xl hover:scale-125 transition-transform"
-                  :class="{ 'text-red-300': isLikeMovie }"
-                  @click="handleLike(movieData.db_movie_id)"
-                >
-                  favorite
-                </span>
-              </div> -->
               <div class="flex items-center gap-x-3">
                 <span
                   >이 영화를 좋아하는 사람
@@ -109,6 +99,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import axios from 'axios'
 import GlobalButton from '@/components/GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit'
@@ -146,6 +137,10 @@ watch(
     isLikeMovie.value = movieData.value.like_user.some((user) => user['id'] === store.userInfo.id)
   },
 )
+
+const handleImg = (event) => {
+  event.target.src = img
+}
 
 const getMovieDetail = () => {
   const URL = import.meta.env.VITE_BACKEND_URL
