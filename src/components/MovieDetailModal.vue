@@ -1,7 +1,7 @@
 <template>
-  <div class="fixed top-0 left-0 w-screen h-screen bg-opacityGray" @click="handleModal"></div>
+  <div class="fixed top-0 left-0 w-screen h-screen bg-opacityGray z-50" @click="handleModal"></div>
   <div
-    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex justify-center items-center"
+    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-50"
   >
     <!-- absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -->
     <div>

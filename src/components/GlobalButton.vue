@@ -1,5 +1,5 @@
 <template>
-  <button :class="'rounded-lg text-xl w-[137px] h-[43px] font-bold ' + btnStyle[type]">
+  <button :class="' rounded-lg text-xl w-[137px] h-[43px] font-bold ' + btnStyle[type]">
     {{ text }}
   </button>
 </template>
