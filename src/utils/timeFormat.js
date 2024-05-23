@@ -8,6 +8,7 @@ export const getTimeFormat = (date) => {
   month = month >= 10 ? month : '0' + month
   day = day >= 10 ? day : '0' + day
   hour = hour >= 10 ? hour : '0' + hour
+  minute = minute >= 10 ? minute : '0' + minute
 
   return new_date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute
 }
