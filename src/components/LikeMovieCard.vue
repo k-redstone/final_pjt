@@ -13,12 +13,6 @@
       </div>
       <div class="flex mt-3 items-center">
         <p class="grow text-sm font-kbizB">{{ movieData.title }}</p>
-        <!-- <span
-          class="material-symbols-outlined text-3xl ml-3 cursor-pointer"
-          @click="handleLike(movieData.db_movie_id)"
-        >
-          favorite
-        </span> -->
       </div>
     </div>
   </div>

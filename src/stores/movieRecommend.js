@@ -17,7 +17,6 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
       url: URL + 'movies/search_poster/',
       data: gptResponse,
     }).then((res) => {
-      console.log(res.data)
       moodMovieList.value = res.data
     })
   }

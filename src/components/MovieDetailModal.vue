@@ -3,7 +3,6 @@
   <div
     class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-50"
   >
-    <!-- absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -->
     <div>
       <div class="w-[1280px] flex bg-gray px-10 py-8 rounded-xl">
         <div class="w-[350px] flex-shrink-0 mr-4">
@@ -109,7 +108,6 @@ const getMovieDetail = () => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       setMovieData.value = res.data.movie
     })
     .catch((error) => {
@@ -128,7 +126,6 @@ const handleLike = (movieId) => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       getMovieDetail()
     })
     .catch((error) => {

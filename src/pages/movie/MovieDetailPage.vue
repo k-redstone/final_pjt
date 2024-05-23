@@ -3,10 +3,6 @@
     <div class="absolute top-0 left-0 w-full h-full bg-opacityGray -z-10"></div>
     <main class="w-full flex flex-col font-kbizB">
       <div>
-        <!-- title -->
-        <!-- <div class="flex items-center w-full my-10"> -->
-        <!-- <h1 class="text-white text-5xl">영화상세 페이지</h1> -->
-        <!-- </div> -->
         <div class="flex mt-10 bg-gray px-10 py-8 rounded-xl">
           <div class="w-[350px] flex-shrink-0 mr-4">
             <img
@@ -153,7 +149,6 @@ const getMovieDetail = () => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       movieData.value = res.data
     })
     .catch((error) => {
@@ -173,8 +168,6 @@ const getMovieReview = () => {
     headers: headers,
   })
     .then((res) => {
-      console.log('getReview')
-      console.log(res.data)
       reviewData.value = res.data
     })
     .catch((error) => {
@@ -183,7 +176,6 @@ const getMovieReview = () => {
 }
 
 const submitReview = (movieId) => {
-  console.log(movieId)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -200,12 +192,11 @@ const submitReview = (movieId) => {
       getMovieReview()
     })
     .catch((error) => {
-      console.log(error)
+      console.error(error)
     })
 }
 
 const deleteComment = (commentId) => {
-  // console.log(postData.value.article.id)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -224,7 +215,6 @@ const deleteComment = (commentId) => {
     })
 }
 const editComment = (commentId, formData) => {
-  console.log(movieData.value)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -254,7 +244,6 @@ const handleLike = (movieId) => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       getMovieDetail()
     })
     .catch((error) => {

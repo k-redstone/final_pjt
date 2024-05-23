@@ -41,7 +41,6 @@ export const useGptStore = defineStore('gpt', () => {
   const getChatList = computed(() => chatList.value)
 
   const setUserMood = async (mood) => {
-    console.log(mood)
     isSelectMood.value = true
     isLoading.value = true
 
@@ -64,7 +63,6 @@ export const useGptStore = defineStore('gpt', () => {
   }
 
   const setUserSelectMovie = (movieList) => {
-    // console.log(mood)
     isShowMovie.value = false
 
     chat.value = {
@@ -103,7 +101,6 @@ export const useGptStore = defineStore('gpt', () => {
 
   const fetchGptMovie = async (chat) => {
     let gptResponse = await fetchGpt(gptMessageList.value)
-    console.log(gptResponse)
     await store.fetchMoodMovie(gptResponse)
     chat.loading = false
     isShowMovie.value = true
