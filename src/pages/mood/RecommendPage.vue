@@ -11,44 +11,44 @@
             >
               <div class="py-5 pl-4 pr-2 flex flex-col gap-y-3">
                 <div class="w-full text-white">
+                  <p>Mood Movie</p>
                   <div
-                    class="w-[303px] h-[90px] bg-[#232636] py-1 px-5 flex flex-col justify-around rounded-xl"
+                    class="w-[303px] h-[90px] bg-darkIndigo py-1 px-5 flex flex-col justify-around rounded-xl"
                   >
                     <p>오늘 당신의 기분은 어떠신가요?</p>
                     <div
-                      class="w-[132px] flex justify-center items-center py-1 fill-none border-white border-2 rounded-2xl"
+                      class="w-[132px] flex justify-center items-center py-1 fill-none border-white border-2 rounded-2xl cursor-pointer"
+                      @click="handleSelectMood"
                     >
-                      <span class="text-sm cursor-pointer" @click="handleSelectMood"
-                        >다 골랐어요</span
-                      >
+                      <span class="text-sm">다 골랐어요</span>
                     </div>
                   </div>
 
                   <!-- 감정 선택 -->
                   <div class="w-[303px] mt-4 grid grid-cols-2 gap-2">
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-[#232636] rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
                       :class="selectedMood === '기뻐요' && 'border-white border-2'"
                       @click="handleSelect('기뻐요')"
                     >
                       <span class="text-sm">😭 행복</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-[#232636] rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
                       :class="selectedMood === '슬퍼요' && 'border-white border-2'"
                       @click="handleSelect('슬퍼요')"
                     >
                       <span class="text-sm">😭 슬픔</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-[#232636] rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
                       :class="selectedMood === '화나요' && 'border-white border-2'"
                       @click="handleSelect('화나요')"
                     >
                       <span class="text-sm">😭 화남</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-[#232636] rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
                       :class="selectedMood === '지루해요' && 'border-white border-2'"
                       @click="handleSelect('지루해요')"
                     >
@@ -72,38 +72,67 @@
           <div class="grow py-5 px-3">
             <template v-if="gptStore.isShowMovie">
               <div class="h-full relative flex flex-col">
-                <div v-show="!isSelectRecommend" class="text-white flex items-center mb-5">
-                  <p class="grow text-red-200 text-lg">{{ errorMsg }}</p>
-                  <div>
-                    <GlobalButton
-                      class="mr-5"
-                      :type="'white'"
-                      :text="'초기화'"
-                      @click="movieStore.clearMoodMovieSelctList"
-                    />
-                    <GlobalButton
-                      :type="'mint-outline'"
-                      :text="'다 골랐어요'"
-                      @click="handleRecommendBtn"
+                <template v-if="!isSelectRecommend">
+                  <div class="text-white flex items-center mb-5">
+                    <p class="grow text-red-200 text-lg">{{ errorMsg }}</p>
+                    <div>
+                      <GlobalButton
+                        class="mr-5"
+                        :type="'white-outline'"
+                        :text="'초기화'"
+                        @click="movieStore.clearMoodMovieSelctList"
+                      />
+                      <GlobalButton
+                        :type="'mint-outline'"
+                        :text="'다 골랐어요'"
+                        @click="handleRecommendBtn"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    id="movieBox"
+                    class="w-full grid grid-cols-2 gap-y-5 overflow-hidden overflow-y-scroll"
+                  >
+                    <MovieCard
+                      v-for="movie in movieStore.moodMovieList"
+                      :movie-data="movie"
+                      :key="movie.id"
                     />
                   </div>
-                </div>
-                <div
-                  id="movieBox"
-                  class="w-full grid grid-cols-2 gap-y-5 overflow-hidden overflow-y-scroll"
-                >
-                  <MovieCard
-                    v-for="movie in movieStore.moodMovieList"
-                    :movie-data="movie"
-                    :key="movie.id"
-                  />
-                </div>
+                </template>
+                <template v-else>
+                  <div class="flex items-center justify-end mb-5">
+                    <div>
+                      <GlobalButton
+                        class="mr-5"
+                        :type="'white'"
+                        :text="'다시 추천받기'"
+                        @click="handleReroll"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    id="movieBox"
+                    class="w-full grid grid-cols-2 gap-y-5 overflow-hidden overflow-y-scroll"
+                  >
+                    <DetailMovieCard
+                      v-for="movie in movieStore.moodMovieList"
+                      :movie-data="movie"
+                      :key="movie.id"
+                    />
+                  </div>
+                </template>
               </div>
             </template>
             <template v-else>
               <div class="flex items-center justify-center h-full w-full">
                 <div class="w-[200px]">
-                  <img class="w-full -translate-y-20" src="@/assets/img/logo.png" alt="logo_img" />
+                  <img
+                    class="w-full -translate-y-20 animate-pulse"
+                    src="@/assets/img/logo.png"
+                    alt="logo_img"
+                    @error="handleImg"
+                  />
                 </div>
               </div>
             </template>
@@ -115,11 +144,14 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import GptChatBox from '@/components/chatBox/GptChatBox.vue'
 import UserChatBox from '@/components/chatBox/UserChatBox.vue'
 import MovieCard from '@/components/MovieCard.vue'
+import DetailMovieCard from '@/components/DetailMovieCard.vue'
 import { useGptStore } from '@/stores/gpt'
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
+import { onBeforeRouteLeave } from 'vue-router'
 import { ref, watch } from 'vue'
 import GlobalButton from '@/components/GlobalButton.vue'
 
@@ -130,6 +162,14 @@ const isSelectRecommend = ref(false)
 const errorMsg = ref('')
 const selectedMood = ref('')
 
+onBeforeRouteLeave(() => {
+  gptStore.resetValue()
+  movieStore.resetValue()
+})
+
+const handleImg = (event) => {
+  event.target.src = img
+}
 const handleSelect = (mood) => {
   selectedMood.value = mood
 }
@@ -147,6 +187,14 @@ const handleRecommendBtn = () => {
   }
   isSelectRecommend.value = true
   gptStore.setUserSelectMovie(movieStore.moodMovieSelectList)
+}
+
+const handleReroll = () => {
+  gptStore.resetValue()
+  movieStore.resetValue()
+  isSelectRecommend.value = false
+  errorMsg.value = ''
+  selectedMood.value = ''
 }
 
 watch(

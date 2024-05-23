@@ -46,7 +46,7 @@ const getFreeBoardList = async () => {
 
   axios({
     method: 'get',
-    url: URL + '/free_board/',
+    url: URL + 'free_board/',
     headers: headers,
   })
     .then((res) => {
@@ -66,7 +66,7 @@ const deletepost = (postId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/free_board/${postId}/edit/`,
+    url: URL + `free_board/${postId}/edit/`,
     headers: headers,
   })
     .then(() => {
@@ -84,7 +84,7 @@ const fetchLike = (postId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/free_board/${postId}/like/`,
+    url: URL + `free_board/${postId}/like/`,
     headers: headers,
   })
     .then(() => {

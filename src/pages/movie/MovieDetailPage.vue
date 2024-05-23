@@ -12,9 +12,10 @@
             <img
               :src="'https://image.tmdb.org/t/p/original' + movieData.poster_path"
               alt="movie_poster"
+              @error="handleImg"
             />
           </div>
-          <div class="flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
+          <div class="grow flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
             <div class="w-full">
               <div class="flex items-center gap-x-3 pb-2">
                 <span class="text-[#ffdd57] text-4xl">{{ movieData.title }}</span>
@@ -29,7 +30,6 @@
               </div>
               <div class="flex items-center gap-x-4">
                 <span>{{ movieData.release_date }}</span>
-                <!-- <span>{{ movieData.runtime }}분</span> -->
                 <span>{{ movieData.vote_average }}점</span>
               </div>
             </div>
@@ -44,16 +44,6 @@
               <span>{{ movieData.overview }}</span>
             </div>
             <div class="flex flex-col gap-y-1">
-              <!-- <div class="flex items-center gap-x-3 cursor-pointer">
-                <span>좋아요</span>
-                <span
-                  class="material-symbols-outlined text-3xl hover:scale-125 transition-transform"
-                  :class="{ 'text-red-300': isLikeMovie }"
-                  @click="handleLike(movieData.db_movie_id)"
-                >
-                  favorite
-                </span>
-              </div> -->
               <div class="flex items-center gap-x-3">
                 <span
                   >이 영화를 좋아하는 사람
@@ -109,6 +99,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import axios from 'axios'
 import GlobalButton from '@/components/GlobalButton.vue'
 import useInputLimit from '@/hooks/useInputLimit'
@@ -147,6 +138,10 @@ watch(
   },
 )
 
+const handleImg = (event) => {
+  event.target.src = img
+}
+
 const getMovieDetail = () => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
@@ -154,7 +149,7 @@ const getMovieDetail = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/movies/detail/${route.params.movieId}/`,
+    url: URL + `movies/detail/${route.params.movieId}/`,
     headers: headers,
   })
     .then((res) => {
@@ -174,7 +169,7 @@ const getMovieReview = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/movie_board/${route.params.movieId}/`,
+    url: URL + `movie_board/${route.params.movieId}/`,
     headers: headers,
   })
     .then((res) => {
@@ -195,7 +190,7 @@ const submitReview = (movieId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/movie_board/${movieId}/comment/`,
+    url: URL + `movie_board/${movieId}/comment/`,
     headers: headers,
     data: review.value,
   })
@@ -218,7 +213,7 @@ const deleteComment = (commentId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    url: URL + `movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
     headers: headers,
   })
     .then(() => {
@@ -236,7 +231,7 @@ const editComment = (commentId, formData) => {
   }
   axios({
     method: 'put',
-    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    url: URL + `movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
     headers: headers,
     data: formData,
   })
@@ -255,7 +250,7 @@ const handleLike = (movieId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/movies/like-movie/${movieId}/`,
+    url: URL + `movies/like-movie/${movieId}/`,
     headers: headers,
   })
     .then((res) => {

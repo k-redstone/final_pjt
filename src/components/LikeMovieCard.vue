@@ -8,6 +8,7 @@
         <img
           :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
           alt="movie_poster"
+          @error="handleImg"
         />
       </div>
       <div class="flex mt-3 items-center">
@@ -24,6 +25,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import { useRouter } from 'vue-router'
 defineProps({
   movieData: Object,
@@ -33,6 +35,10 @@ const router = useRouter()
 
 const moveDetailPage = (movieId) => {
   router.push({ name: 'movieDetail', params: { movieId: movieId } })
+}
+
+const handleImg = (event) => {
+  event.target.src = img
 }
 </script>
 

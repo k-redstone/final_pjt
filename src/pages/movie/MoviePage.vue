@@ -43,7 +43,7 @@ const getRandomMovieList = () => {
 
   axios({
     method: 'get',
-    url: URL + `/movies/list/`,
+    url: URL + `movies/list/`,
     headers: headers,
   })
     .then((res) => {

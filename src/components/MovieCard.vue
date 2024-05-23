@@ -6,11 +6,12 @@
     >
       <div
         class="h-[200px] rounded-sm object-cover box-border"
-        :class="{ 'border-red-200 border-4': isSelect }"
+        :class="{ 'border-lightSky border-4': isSelect }"
       >
         <img
           :src="'https://image.tmdb.org/t/p/original/' + movieData.poster_path"
           alt="movie_poster"
+          @error="handleImg"
         />
       </div>
       <p class="pt-2 text-center text-xs">{{ movieData.title }}</p>
@@ -19,6 +20,7 @@
 </template>
 
 <script setup>
+import img from '@/assets/img/no_image.png'
 import { useMovieRecommendStore } from '@/stores/movieRecommend'
 import { ref, watch } from 'vue'
 defineProps({
@@ -27,6 +29,10 @@ defineProps({
 const store = useMovieRecommendStore()
 
 const isSelect = ref(false)
+
+const handleImg = (event) => {
+  event.target.src = img
+}
 
 const handleMovieSelect = (movieId) => {
   if (isSelect.value === true) {
