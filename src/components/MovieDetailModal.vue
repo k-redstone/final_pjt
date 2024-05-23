@@ -105,7 +105,7 @@ const getMovieDetail = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/movies/movie_exist/${props.movieData.db_movie_id}/`,
+    url: URL + `movies/movie_exist/${props.movieData.db_movie_id}/`,
     headers: headers,
   })
     .then((res) => {
@@ -124,7 +124,7 @@ const handleLike = (movieId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/movies/like-movie/${movieId}/`,
+    url: URL + `movies/like-movie/${movieId}/`,
     headers: headers,
   })
     .then((res) => {

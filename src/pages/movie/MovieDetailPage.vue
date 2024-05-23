@@ -154,7 +154,7 @@ const getMovieDetail = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/movies/detail/${route.params.movieId}/`,
+    url: URL + `movies/detail/${route.params.movieId}/`,
     headers: headers,
   })
     .then((res) => {
@@ -174,7 +174,7 @@ const getMovieReview = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/movie_board/${route.params.movieId}/`,
+    url: URL + `movie_board/${route.params.movieId}/`,
     headers: headers,
   })
     .then((res) => {
@@ -195,7 +195,7 @@ const submitReview = (movieId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/movie_board/${movieId}/comment/`,
+    url: URL + `movie_board/${movieId}/comment/`,
     headers: headers,
     data: review.value,
   })
@@ -218,7 +218,7 @@ const deleteComment = (commentId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    url: URL + `movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
     headers: headers,
   })
     .then(() => {
@@ -236,7 +236,7 @@ const editComment = (commentId, formData) => {
   }
   axios({
     method: 'put',
-    url: URL + `/movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
+    url: URL + `movie_board/${movieData.value.db_movie_id}/comment/${commentId}/`,
     headers: headers,
     data: formData,
   })
@@ -255,7 +255,7 @@ const handleLike = (movieId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/movies/like-movie/${movieId}/`,
+    url: URL + `movies/like-movie/${movieId}/`,
     headers: headers,
   })
     .then((res) => {

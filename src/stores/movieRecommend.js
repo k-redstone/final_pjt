@@ -14,7 +14,7 @@ export const useMovieRecommendStore = defineStore('movieRecommend', () => {
     const URL = import.meta.env.VITE_BACKEND_URL
     await axios({
       method: 'post',
-      url: URL + '/movies/search_poster/',
+      url: URL + 'movies/search_poster/',
       data: gptResponse,
     }).then((res) => {
       console.log(res.data)

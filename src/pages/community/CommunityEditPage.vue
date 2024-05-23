@@ -87,7 +87,7 @@ const submitPost = () => {
 
   axios({
     method: 'put',
-    url: URL + `/free_board/${route.params.postId}/edit/`,
+    url: URL + `free_board/${route.params.postId}/edit/`,
     headers: headers,
     data: formData.value,
   })
@@ -111,7 +111,7 @@ const getPostDetail = () => {
 
   axios({
     method: 'get',
-    url: URL + `/free_board/${route.params.postId}/`,
+    url: URL + `free_board/${route.params.postId}/`,
     headers: headers,
   })
     .then((res) => {

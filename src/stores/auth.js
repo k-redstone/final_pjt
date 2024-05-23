@@ -13,7 +13,7 @@ export const useAuthStore = defineStore(
 
       await axios({
         method: 'post',
-        url: URL + '/accounts/login/',
+        url: URL + 'accounts/login/',
         data: formValue,
       }).then((res) => {
         token.value = res.data.token
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore(
       const URL = import.meta.env.VITE_BACKEND_URL
       await axios({
         method: 'post',
-        url: URL + '/accounts/registration/',
+        url: URL + 'accounts/registration/',
         data: formValue,
       }).then((res) => {
         token.value = res.data.key
@@ -35,7 +35,7 @@ export const useAuthStore = defineStore(
       const URL = import.meta.env.VITE_BACKEND_URL
       await axios({
         method: 'get',
-        url: URL + `/accounts/${username}/profile/`,
+        url: URL + `accounts/${username}/profile/`,
       }).then((res) => {
         userInfo.value = res.data
       })
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore(
       const URL = import.meta.env.VITE_BACKEND_URL
       await axios({
         method: 'post',
-        url: URL + '/accounts/logout/',
+        url: URL + 'accounts/logout/',
       }).then(() => {
         token.value = null
         userInfo.value = { username: 'null' }

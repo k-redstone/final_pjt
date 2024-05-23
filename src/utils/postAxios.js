@@ -7,7 +7,7 @@ const fetchFreeBoardList = async (token) => {
   }
   await axios({
     method: 'get',
-    url: URL + '/free_board/',
+    url: URL + 'free_board/',
     headers: headers,
   }).then((res) => {
     // postList.value = res.data

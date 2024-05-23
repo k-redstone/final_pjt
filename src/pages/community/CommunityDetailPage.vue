@@ -98,7 +98,7 @@ const getPostDetail = () => {
 
   axios({
     method: 'get',
-    url: URL + `/free_board/${route.params.postId}/`,
+    url: URL + `free_board/${route.params.postId}/`,
     headers: headers,
   })
     .then((res) => {
@@ -119,7 +119,7 @@ const submitComment = (postId) => {
   }
   axios({
     method: 'post',
-    url: URL + `/free_board/${postId}/comment/`,
+    url: URL + `free_board/${postId}/comment/`,
     headers: headers,
     data: comment.value,
   })
@@ -134,7 +134,6 @@ const submitComment = (postId) => {
 }
 
 const deleteComment = (commentId) => {
-  // console.log(postData.value.article.id)
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -142,7 +141,7 @@ const deleteComment = (commentId) => {
 
   axios({
     method: 'delete',
-    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
+    url: URL + `free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
   })
     .then(() => {
@@ -159,7 +158,7 @@ const editComment = (commentId, formData) => {
   }
   axios({
     method: 'put',
-    url: URL + `/free_board/${postData.value.article.id}/comment/${commentId}/`,
+    url: URL + `free_board/${postData.value.article.id}/comment/${commentId}/`,
     headers: headers,
     data: formData,
   })

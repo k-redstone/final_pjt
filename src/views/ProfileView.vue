@@ -70,7 +70,7 @@ const getUserMovieList = () => {
   }
   axios({
     method: 'get',
-    url: URL + `/accounts/${route.params.username}/like_movie/`,
+    url: URL + `accounts/${route.params.username}/like_movie/`,
     headers: headers,
   })
     .then((res) => {
@@ -92,7 +92,7 @@ const getFollowingList = () => {
 
   axios({
     method: 'get',
-    url: URL + `/accounts/${route.params.username}/followings/`,
+    url: URL + `accounts/${route.params.username}/followings/`,
     headers: headers,
   }).then((res) => {
     following.value = res.data
@@ -107,7 +107,7 @@ const getFollowerList = () => {
 
   axios({
     method: 'get',
-    url: URL + `/accounts/${route.params.username}/followers/`,
+    url: URL + `accounts/${route.params.username}/followers/`,
     headers: headers,
   }).then((res) => {
     follower.value = res.data
@@ -123,7 +123,7 @@ const handleFollow = () => {
 
   axios({
     method: 'post',
-    url: URL + `/accounts/${route.params.username}/follow/`,
+    url: URL + `accounts/${route.params.username}/follow/`,
     headers: headers,
   }).then((res) => {
     getFollowerList()
@@ -137,5 +137,3 @@ const isFollow = computed(() => {
 </script>
 
 <style scoped></style>
-
-<!-- http://127.0.0.1:8000/accounts/<str:tar_username>/followings/ -->

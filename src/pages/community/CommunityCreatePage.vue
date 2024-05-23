@@ -79,7 +79,7 @@ const submitPost = () => {
 
   axios({
     method: 'post',
-    url: URL + '/free_board/article/',
+    url: URL + 'free_board/article/',
     headers: headers,
     data: formData.value,
   })
