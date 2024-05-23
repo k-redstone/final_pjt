@@ -31,7 +31,12 @@
         </div>
       </div>
       <div class="mt-10 grid grid-cols-4 gap-x-10 gap-y-20 mb-20">
-        <LikeMovieCard v-for="movie in movieData" :movieData="movie" :key="movie.db_movie_id" />
+        <LikeMovieCard
+          class="hover:scale-110 transition-transform"
+          v-for="movie in movieData"
+          :movieData="movie"
+          :key="movie.db_movie_id"
+        />
       </div>
     </main>
   </div>
