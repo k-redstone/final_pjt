@@ -15,7 +15,7 @@
         <div class="grow flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
           <div class="w-full">
             <div class="flex items-center gap-x-3 pb-2">
-              <span class="text-[#ffdd57] text-4xl">{{ setMovieData.title }}</span>
+              <span class="text-[#968a5a] text-4xl">{{ setMovieData.title }}</span>
 
               <span
                 class="material-symbols-outlined text-4xl fill-red-300 hover:scale-125 transition-transform cursor-pointer"
@@ -34,7 +34,7 @@
             </div>
             <div class="flex items-center gap-x-4">
               <span>{{ setMovieData.release_date }}</span>
-              <span>{{ setMovieData.vote_average }}점</span>
+              <span>평점 {{ parseInt(setMovieData.vote_average) }}점</span>
             </div>
           </div>
           <div class="flex flex-col">

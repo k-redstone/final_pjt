@@ -26,7 +26,7 @@
               </div>
               <div class="flex items-center gap-x-4">
                 <span>{{ movieData.release_date }}</span>
-                <span>{{ movieData.vote_average }}점</span>
+                <span>평점 {{ parseInt(movieData.vote_average) }}점</span>
               </div>
             </div>
             <div class="flex flex-col">
