@@ -45,7 +45,7 @@
 <script setup>
 import LikeMovieCard from '@/components/LikeMovieCard.vue'
 import { ref, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import axios from 'axios'
 
@@ -58,19 +58,25 @@ const following = ref([])
 const follower = ref([])
 
 onMounted(() => {
-  getUserMovieList()
-  getFollowingList()
-  getFollowerList()
+  getUserMovieList(route.params.username)
+  getFollowingList(route.params.username)
+  getFollowerList(route.params.username)
 })
 
-const getUserMovieList = () => {
+onBeforeRouteUpdate((to) => {
+  getUserMovieList(to.params.username)
+  getFollowingList(to.params.username)
+  getFollowerList(to.params.username)
+})
+
+const getUserMovieList = (username) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
   }
   axios({
     method: 'get',
-    url: URL + `accounts/${route.params.username}/like_movie/`,
+    url: URL + `accounts/${username}/like_movie/`,
     headers: headers,
   })
     .then((res) => {
@@ -83,7 +89,7 @@ const getUserMovieList = () => {
     })
 }
 
-const getFollowingList = () => {
+const getFollowingList = (username) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -91,13 +97,13 @@ const getFollowingList = () => {
 
   axios({
     method: 'get',
-    url: URL + `accounts/${route.params.username}/followings/`,
+    url: URL + `accounts/${username}/followings/`,
     headers: headers,
   }).then((res) => {
     following.value = res.data
   })
 }
-const getFollowerList = () => {
+const getFollowerList = (username) => {
   const URL = import.meta.env.VITE_BACKEND_URL
   const headers = {
     Authorization: `Token ${store.token}`,
@@ -105,7 +111,7 @@ const getFollowerList = () => {
 
   axios({
     method: 'get',
-    url: URL + `accounts/${route.params.username}/followers/`,
+    url: URL + `accounts/${username}/followers/`,
     headers: headers,
   }).then((res) => {
     follower.value = res.data
@@ -123,7 +129,7 @@ const handleFollow = () => {
     url: URL + `accounts/${route.params.username}/follow/`,
     headers: headers,
   }).then((res) => {
-    getFollowerList()
+    getFollowerList(route.params.username)
   })
 }
 
