@@ -31,7 +31,6 @@ const handleMovieSelect = () => {
 }
 
 const handleModalOpen = () => {
-  console.log('emit')
   isModalOpen.value = !isModalOpen.value
 }
 

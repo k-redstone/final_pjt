@@ -164,14 +164,12 @@ const fetchRegister = async () => {
     await store.getUserInfo(formData.value.username)
     router.push({ name: 'home' })
   } catch (error) {
-    console.log(error.response.data)
+    console.error(error.response.data)
     Object.keys(error.response.data).forEach((key) => {
       errorMsg.value[key] = FORM_ERROR_MESSAGE[error.response.data[key][0]]
-      // errorMsg.value[key] = error.response.data[key][0]
     })
     if (error.response.data['non_field_errors']) {
       errorMsg.value.password2 = FORM_ERROR_MESSAGE[error.response.data['non_field_errors'][0]]
-      // errorMsg.value.password2 = error.response.data['non_field_errors'][0]
     }
   }
 }

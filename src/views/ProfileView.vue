@@ -28,10 +28,6 @@
           >
             <span>언팔로우</span>
           </div>
-          <!-- route test용도 -->
-          <!-- <RouterLink :to="{ name: 'profile', params: { username: 'test3' } }" class="mt-2">
-            <span>My Profile</span>
-          </RouterLink> -->
         </div>
       </div>
       <div class="mt-10 grid grid-cols-4 gap-x-10 gap-y-20 mb-20">
@@ -57,7 +53,6 @@ const following = ref([])
 const follower = ref([])
 
 onMounted(() => {
-  console.log('mout')
   getUserMovieList()
   getFollowingList()
   getFollowerList()
@@ -75,7 +70,6 @@ const getUserMovieList = () => {
   })
     .then((res) => {
       movieData.value = res.data
-      console.log(res.data)
     })
     .catch((error) => {
       if (error.response.status === 404) {
@@ -96,7 +90,6 @@ const getFollowingList = () => {
     headers: headers,
   }).then((res) => {
     following.value = res.data
-    console.log(res)
   })
 }
 const getFollowerList = () => {
@@ -111,7 +104,6 @@ const getFollowerList = () => {
     headers: headers,
   }).then((res) => {
     follower.value = res.data
-    console.log(res)
   })
 }
 
@@ -127,7 +119,6 @@ const handleFollow = () => {
     headers: headers,
   }).then((res) => {
     getFollowerList()
-    console.log(res)
   })
 }
 

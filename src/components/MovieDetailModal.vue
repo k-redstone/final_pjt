@@ -1,9 +1,8 @@
 <template>
-  <div class="fixed top-0 left-0 w-screen h-screen bg-opacityGray" @click="handleModal"></div>
+  <div class="fixed top-0 left-0 w-screen h-screen bg-opacityGray z-50" @click="handleModal"></div>
   <div
-    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex justify-center items-center"
+    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-50"
   >
-    <!-- absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -->
     <div>
       <div class="w-[1280px] flex bg-gray px-10 py-8 rounded-xl">
         <div class="w-[350px] flex-shrink-0 mr-4">
@@ -16,7 +15,7 @@
         <div class="grow flex flex-col items-start text-white text-lg gap-y-4 font-kbizR">
           <div class="w-full">
             <div class="flex items-center gap-x-3 pb-2">
-              <span class="text-[#ffdd57] text-4xl">{{ setMovieData.title }}</span>
+              <span class="text-[#968a5a] text-4xl">{{ setMovieData.title }}</span>
 
               <span
                 class="material-symbols-outlined text-4xl fill-red-300 hover:scale-125 transition-transform cursor-pointer"
@@ -35,7 +34,7 @@
             </div>
             <div class="flex items-center gap-x-4">
               <span>{{ setMovieData.release_date }}</span>
-              <span>{{ setMovieData.vote_average }}점</span>
+              <span>평점 {{ parseInt(setMovieData.vote_average) }}점</span>
             </div>
           </div>
           <div class="flex flex-col">
@@ -109,7 +108,6 @@ const getMovieDetail = () => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       setMovieData.value = res.data.movie
     })
     .catch((error) => {
@@ -128,7 +126,6 @@ const handleLike = (movieId) => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       getMovieDetail()
     })
     .catch((error) => {

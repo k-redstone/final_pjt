@@ -14,7 +14,6 @@
           class="flex flex-col border p-3 border-black"
           @submit.prevent="submitPost"
         >
-          <!-- <p class="mb-4">{{ store.userInfo.username }}</p> -->
           <label for="freeBoardTitle">
             <span class="text-lg">제목</span>
             <span> &ensp; </span>
@@ -92,14 +91,13 @@ const submitPost = () => {
     data: formData.value,
   })
     .then((res) => {
-      console.log(res)
       formData.value.title = ''
       formData.value.content = ''
       document.querySelector('#freeBoardForm').reset()
       router.push({ name: 'community' })
     })
     .catch((error) => {
-      console.log(error)
+      console.error(error)
     })
 }
 

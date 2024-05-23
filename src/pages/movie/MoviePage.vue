@@ -47,13 +47,10 @@ const getRandomMovieList = () => {
     headers: headers,
   })
     .then((res) => {
-      console.log(res.data)
       movieData.value = res.data
     })
     .catch((error) => {
       console.error(error)
     })
 }
-
-// http://127.0.0.1:8000/movies/list/
 </script>

@@ -8,7 +8,6 @@
       <span class="text-lg grow text-gray-400">{{ getTimeFormat(postData.created_at) }}</span>
       <!-- serializer수정 후 변경 -->
       <div v-show="store.userInfo.id === postData.user" class="flex gap-x-4">
-        <!-- <div class="flex gap-x-4"> -->
         <RouterLink
           class="text-lg cursor-pointer hover:scale-110"
           :to="{ name: 'communityEdit', params: { postId: postData.id } }"
@@ -55,7 +54,6 @@ import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { getTimeFormat } from '@/utils/timeFormat'
 
-// 추후 백엔드 연결 후 props로 데이터 연동 예정
 defineProps({
   postData: Object,
 })

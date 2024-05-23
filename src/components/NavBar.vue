@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-10 w-full">
+  <div class="pt-10 pb-2 border-b-2 w-full">
     <nav class="h-[50px] flex font-bold items-center overflow-hidden">
       <!-- link -->
       <div class="grow">
@@ -33,14 +33,14 @@
           <span class="text-xl font-kbizR">{{ store.userInfo.username }}</span>
         </div>
         <div
-          class="absolute hidden peer-hover:block peer-hover:translate-y-8 hover:block hover:translate-y-8"
+          class="absolute bg-gray py-2 px-3 hidden rounded-lg peer-hover:block peer-hover:translate-y-8 hover:block hover:translate-y-8"
         >
           <div class="w-full flex flex-col items-center gap-y-2">
             <RouterLink
               :to="{ name: 'profile', params: { username: store.userInfo.username } }"
               class="mt-2"
             >
-              <span>My Profile</span>
+              <span>Profile</span>
             </RouterLink>
             <span class="cursor-pointer" @click="handleLogout">Logout</span>
           </div>

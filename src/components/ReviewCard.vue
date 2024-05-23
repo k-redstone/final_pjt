@@ -6,7 +6,6 @@
       </RouterLink>
       <p class="text-gray-400 grow">{{ getTimeFormat(comment.created_at) }}</p>
       <div v-show="store.userInfo.id === comment.user" class="flex gap-x-4">
-        <!-- <div class="flex gap-x-4"> -->
         <span
           v-if="!isEdit"
           class="text-lg cursor-pointer hover:scale-110"
@@ -73,7 +72,6 @@ const handleDelete = (commentId) => {
   emit('deleteComment', commentId)
 }
 const handleEdit = (commentId) => {
-  console.log(commentId)
   emit('editComment', commentId, editComment.value)
   isEdit.value = false
   editComment.value.content = ''

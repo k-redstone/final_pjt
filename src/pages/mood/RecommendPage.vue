@@ -27,32 +27,32 @@
                   <!-- 감정 선택 -->
                   <div class="w-[303px] mt-4 grid grid-cols-2 gap-2">
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border cursor-pointer"
                       :class="selectedMood === '기뻐요' && 'border-white border-2'"
                       @click="handleSelect('기뻐요')"
                     >
-                      <span class="text-sm">😭 행복</span>
+                      <span class="text-sm">😄 행복</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border cursor-pointer"
                       :class="selectedMood === '슬퍼요' && 'border-white border-2'"
                       @click="handleSelect('슬퍼요')"
                     >
                       <span class="text-sm">😭 슬픔</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border cursor-pointer"
                       :class="selectedMood === '화나요' && 'border-white border-2'"
                       @click="handleSelect('화나요')"
                     >
-                      <span class="text-sm">😭 화남</span>
+                      <span class="text-sm">😡 화남</span>
                     </div>
                     <div
-                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border"
+                      class="w-[101px] flex justify-center items-center py-1 bg-darkIndigo rounded-2xl box-border cursor-pointer"
                       :class="selectedMood === '지루해요' && 'border-white border-2'"
                       @click="handleSelect('지루해요')"
                     >
-                      <span class="text-sm">😭 지루</span>
+                      <span class="text-sm">😐 지루</span>
                     </div>
                   </div>
                 </div>

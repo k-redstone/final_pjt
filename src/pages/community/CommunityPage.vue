@@ -24,14 +24,10 @@
 import CommunityCard from '@/components/CommunityCard.vue'
 import GlobalButton from '@/components/GlobalButton.vue'
 import axios from 'axios'
-import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ref, onMounted } from 'vue'
 
-// import { fetchFreeBoardList } from '@/utils/postAxios'
-
 const store = useAuthStore()
-const router = useRouter()
 const postList = ref([])
 
 onMounted(() => {
@@ -51,7 +47,6 @@ const getFreeBoardList = async () => {
   })
     .then((res) => {
       postList.value = res.data
-      console.log(res)
     })
     .catch((error) => {
       console.error(error)
