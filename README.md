@@ -210,39 +210,39 @@ const fetchGptMovie = async (chat) => {
 
 > 회원가입
 
-![signup](./Docs/img/screen/signup.png)
+![signup](./docs/img/screen/signup.png)
 
 > 로그인
 
-![login](./Docs/img/screen/login.png)
+![login](./docs/img/screen/login.png)
 
 > AI기반 영화 추천
 
-![GPT](./Docs/img/screen/GPT.png)
+![GPT](./docs/img/screen/GPT.png)
 
 > 영화 랜덤 추천
 
-![movieRandom](./Docs/img/screen/movieRandom.png)
+![movieRandom](./docs/img/screen/movieRandom.png)
 
 > 영화 상세 페이지
 
-![movieDetail](./Docs/img/screen/movieDetail.png)
+![movieDetail](./docs/img/screen/movieDetail.png)
 
 > 커뮤니티
 
-![community](./Docs/img/screen/community.png)
+![community](./docs/img/screen/community.png)
 
 > 프로필
 
-![profile](./Docs/img/screen/profile.png)
+![profile](./docs/img/screen/profile.png)
 
 ## API 명세서
 
-[API 문서](./backEnd/Docs/API.md)
+[API 문서](./backEnd/docs/API.md)
 
 ## Git 컨벤션
 
-[깃 컨벤션 문서](./Docs/convention/GIT_CONVENTION.md)
+[깃 컨벤션 문서](./docs/convention/GIT_CONVENTION.md)
 
 ## 프로젝트를 하면서 느낀점
 
@@ -265,7 +265,7 @@ const fetchGptMovie = async (chat) => {
 
 ### 구성도
 
-- ![배포 구성](./Docs/img/deploy.png)
+- ![배포 구성](./docs/img/deploy.png)
 
 ### 사이트
 
